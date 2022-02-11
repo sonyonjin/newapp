@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.skyautonet.seda_aiv.databinding.FragmentHomeBinding
+import com.skyautonet.seda_aiv.ui.BaseFragment
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -32,11 +33,21 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+        initView(root)
         return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initView(view: View) {
+        showLoader()
+        view.postDelayed({
+            hideLoader()
+        }, 3000)
+
     }
 }
