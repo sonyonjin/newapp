@@ -1,4 +1,4 @@
-package com.skyautonet.seda_aiv.ui.home
+package com.skyautonet.seda_aiv.ui.setting
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import com.skyautonet.seda_aiv.databinding.FragmentHomeBinding
+import com.skyautonet.seda_aiv.databinding.FragmentSettingBinding
 import com.skyautonet.seda_aiv.ui.BaseFragment
 
-class HomeFragment : BaseFragment() {
+class SettingFragment : BaseFragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentSettingBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,26 +23,20 @@ class HomeFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this).get(SettingViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentSettingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+        val textView: TextView = binding.textSetting
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-
-        initView(root)
         return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun initView(view: View) {
-
     }
 }

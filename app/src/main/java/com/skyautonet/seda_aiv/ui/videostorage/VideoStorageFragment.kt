@@ -1,18 +1,17 @@
-package com.skyautonet.seda_aiv.ui.notifications
+package com.skyautonet.seda_aiv.ui.videostorage
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.skyautonet.seda_aiv.databinding.FragmentNotificationsBinding
+import com.skyautonet.seda_aiv.databinding.FragmentVideoStorageBinding
 import com.skyautonet.seda_aiv.ui.BaseFragment
 
-class NotificationsFragment : BaseFragment() {
+class VideoStorageFragment : BaseFragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentVideoStorageBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,12 +23,12 @@ class NotificationsFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+            ViewModelProvider(this).get(VideoStorageViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentVideoStorageBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
+        val textView: TextView = binding.textVideoStorage
         notificationsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }

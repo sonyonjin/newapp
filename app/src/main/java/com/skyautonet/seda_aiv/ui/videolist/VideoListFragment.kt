@@ -1,4 +1,4 @@
-package com.skyautonet.seda_aiv.ui.home
+package com.skyautonet.seda_aiv.ui.videolist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import com.skyautonet.seda_aiv.databinding.FragmentHomeBinding
+import com.skyautonet.seda_aiv.databinding.FragmentVideoListBinding
 import com.skyautonet.seda_aiv.ui.BaseFragment
 
-class HomeFragment : BaseFragment() {
+class VideoListFragment : BaseFragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentVideoListBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,27 +22,21 @@ class HomeFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val notificationsViewModel =
+            ViewModelProvider(this).get(VideolistViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentVideoListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textVideoList
+        notificationsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-
-        initView(root)
         return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun initView(view: View) {
-
     }
 }

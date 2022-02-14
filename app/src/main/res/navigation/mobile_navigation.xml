@@ -12,14 +12,26 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.skyautonet.seda_aiv.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_live_view"
+        android:name="com.skyautonet.seda_aiv.ui.liveview.LiveViewFragment"
+        android:label="@string/title_live_view"
+        tools:layout="@layout/fragment_live_view" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.skyautonet.seda_aiv.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_video_list"
+        android:name="com.skyautonet.seda_aiv.ui.videolist.VideoListFragment"
+        android:label="@string/title_video_list"
+        tools:layout="@layout/fragment_video_list" />
+
+    <fragment
+        android:id="@+id/navigation_video_storage"
+        android:name="com.skyautonet.seda_aiv.ui.videostorage.VideoStorageFragment"
+        android:label="@string/title_video_storage"
+        tools:layout="@layout/fragment_video_storage" />
+
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.skyautonet.seda_aiv.ui.setting.SettingFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

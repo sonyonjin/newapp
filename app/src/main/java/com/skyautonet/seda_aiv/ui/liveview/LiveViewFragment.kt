@@ -1,18 +1,17 @@
-package com.skyautonet.seda_aiv.ui.dashboard
+package com.skyautonet.seda_aiv.ui.liveview
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.skyautonet.seda_aiv.databinding.FragmentDashboardBinding
+import com.skyautonet.seda_aiv.databinding.FragmentLiveViewBinding
 import com.skyautonet.seda_aiv.ui.BaseFragment
 
-class DashboardFragment : BaseFragment() {
+class LiveViewFragment : BaseFragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentLiveViewBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,12 +23,12 @@ class DashboardFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+            ViewModelProvider(this).get(LiveViewViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentLiveViewBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
+        val textView: TextView = binding.textLiveView
         dashboardViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }

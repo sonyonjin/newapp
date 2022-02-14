@@ -18,11 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:indeterminateTint="#70B0B0B0"
+            android:indeterminateTint="#700000B0"
             android:indeterminateTintMode="src_in"
             android:progress="0" />
-
-
     </LinearLayout>
-
 </LinearLayout>

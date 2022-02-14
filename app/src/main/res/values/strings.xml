@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">SedaAIV</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_live_view">Live view</string>
+    <string name="title_video_list">Video list</string>
+    <string name="title_video_storage">Video storage</string>
+    <string name="title_setting">Setting</string>
 </resources>
