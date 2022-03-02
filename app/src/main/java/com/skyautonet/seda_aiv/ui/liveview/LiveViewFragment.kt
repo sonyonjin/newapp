@@ -12,6 +12,7 @@ import com.skyautonet.seda_aiv.ui.BaseFragment
 class LiveViewFragment : BaseFragment() {
 
     private var _binding: FragmentLiveViewBinding? = null
+    private lateinit var viewModel: LiveViewViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +23,13 @@ class LiveViewFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(LiveViewViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(LiveViewViewModel::class.java)
 
         _binding = FragmentLiveViewBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textLiveView
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        viewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

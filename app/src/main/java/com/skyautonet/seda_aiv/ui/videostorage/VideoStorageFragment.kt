@@ -12,6 +12,7 @@ import com.skyautonet.seda_aiv.ui.BaseFragment
 class VideoStorageFragment : BaseFragment() {
 
     private var _binding: FragmentVideoStorageBinding? = null
+    private lateinit var viewModel: VideoStorageViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +23,13 @@ class VideoStorageFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(VideoStorageViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(VideoStorageViewModel::class.java)
 
         _binding = FragmentVideoStorageBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textVideoStorage
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
+        viewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

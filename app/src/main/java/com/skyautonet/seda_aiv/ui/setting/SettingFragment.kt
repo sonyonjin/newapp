@@ -12,6 +12,7 @@ import com.skyautonet.seda_aiv.ui.BaseFragment
 class SettingFragment : BaseFragment() {
 
     private var _binding: FragmentSettingBinding? = null
+    private lateinit var viewModel: SettingViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +23,13 @@ class SettingFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(SettingViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SettingViewModel::class.java)
 
         _binding = FragmentSettingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textSetting
-        homeViewModel.text.observe(viewLifecycleOwner) {
+        viewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

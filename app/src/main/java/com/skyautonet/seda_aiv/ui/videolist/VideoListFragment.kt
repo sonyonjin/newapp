@@ -12,6 +12,7 @@ import com.skyautonet.seda_aiv.ui.BaseFragment
 class VideoListFragment : BaseFragment() {
 
     private var _binding: FragmentVideoListBinding? = null
+    private lateinit var viewModel: VideolistViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +23,13 @@ class VideoListFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(VideolistViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(VideolistViewModel::class.java)
 
         _binding = FragmentVideoListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textVideoList
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
+        viewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
