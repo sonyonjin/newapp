@@ -2,8 +2,8 @@ package com.skyautonet.seda_aiv.util
 
 import androidx.lifecycle.LiveData
 import com.skyautonet.seda_aiv.data.AppConfig
-import com.skyautonet.seda_aiv.storage.AppDatabase
-import com.skyautonet.seda_aiv.storage.entity.AppManagedConfig
+import com.skyautonet.seda_aiv.data.source.local.AppDatabase
+import com.skyautonet.seda_aiv.data.source.local.entity.AppManagedConfig
 
 object RoomDatabaseUtil {
 

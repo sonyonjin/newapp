@@ -1,5 +1,6 @@
 package com.skyautonet.seda_aiv.rest
 
+import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,8 +12,6 @@ import java.util.concurrent.TimeUnit
 class ApiClient {
 
     companion object {
-        const val BASE_URL_APP ="http://axonfms.com/services/"
-
         fun getSAAppInterface(): SAAppInterface {
             val okClient = OkHttpClient.Builder()
             okClient.connectTimeout(60000, TimeUnit.MILLISECONDS)
@@ -30,14 +29,16 @@ class ApiClient {
 //                        .header("Accept", "application/rss+xml")
 //                        .header("Content-type", "application/rss+xml")
 //                        .header("Scope", "Bearer iwRduC25KbSn4FfzGNcYkraOcRcKRrJ0UrTB5aatKAHXbgJCf9YnY13c4OMD")
+                    .header("content-type", "text/html; charset=UTF-8")
                     .build()
                 response
 
             })
 
+            val baseUrl = "http://${RoomDatabaseUtil.getApplicationConfigData().ipAddress}/"
 
             val client = Retrofit.Builder()
-                .baseUrl(BASE_URL_APP)
+                .baseUrl(baseUrl)
                 .client(okClient.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())

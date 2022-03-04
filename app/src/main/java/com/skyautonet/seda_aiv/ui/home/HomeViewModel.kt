@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.skyautonet.seda_aiv.data.AppConfig
-import com.skyautonet.seda_aiv.storage.entity.AppManagedConfig
+import com.skyautonet.seda_aiv.data.source.local.entity.AppManagedConfig
 import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
 
 class HomeViewModel : ViewModel() {

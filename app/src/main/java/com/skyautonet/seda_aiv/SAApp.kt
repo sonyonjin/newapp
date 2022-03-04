@@ -1,22 +1,20 @@
 package com.skyautonet.seda_aiv
 
 import android.app.Application
-import android.text.TextUtils
-import android.util.Log
 import com.skyautonet.seda_aiv.dagger.component.DaggerNetComponent
 import com.skyautonet.seda_aiv.dagger.component.NetComponent
 import com.skyautonet.seda_aiv.dagger.module.APIModule
 import com.skyautonet.seda_aiv.dagger.module.AppModule
 import com.skyautonet.seda_aiv.dagger.module.NetModule
-import com.skyautonet.seda_aiv.rest.ApiClient
-import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
-import com.skyautonet.seda_aiv.util.SdCardUtil
-import java.io.File
+import com.skyautonet.seda_aiv.data.source.DefaultRemoteSARepository
+import com.skyautonet.seda_aiv.data.source.FakeSARemoteDataSource
+import com.skyautonet.seda_aiv.data.source.SARepository
 
 class SAApp : Application() {
 
     companion object {
         lateinit var instance: SAApp
+        lateinit var saRepository: SARepository
     }
 
     private lateinit var netComponent: NetComponent
@@ -34,8 +32,11 @@ class SAApp : Application() {
     private fun init() {
         netComponent = DaggerNetComponent.builder()
             .appModule(AppModule(this))
-            .netModule(NetModule(ApiClient.BASE_URL_APP))
+            .netModule(NetModule())
             .aPIModule(APIModule())
             .build()
+
+        saRepository = DefaultRemoteSARepository(FakeSARemoteDataSource)
+        netComponent.inject(saRepository)
     }
 }

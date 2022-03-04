@@ -2,11 +2,8 @@ package com.skyautonet.seda_aiv.util
 
 import android.content.Context
 import android.os.Environment
-import android.text.TextUtils
-import android.util.Log
-import com.skyautonet.seda_aiv.storage.entity.AppManagedConfig
+import com.skyautonet.seda_aiv.data.source.local.entity.AppManagedConfig
 import java.io.File
-import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 

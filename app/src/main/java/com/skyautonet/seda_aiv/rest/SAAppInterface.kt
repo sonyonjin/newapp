@@ -7,15 +7,8 @@ import retrofit2.http.*
 
 interface SAAppInterface {
 
-    //InfoList
-    @FormUrlEncoded
-    @POST("vehiclelist")
-    fun infoAxon(
-        @Field("start") page: Int,
-        @Field("user_id") userId: String,
-        @Field("status") type: String,
-        @Field("search_keyword") searchKeyword: String,
-        @Field("api_key") apiKey: String
-    ): Call<InfoResponce>
+    //alert.php
+    @GET("alert2.php")
+    fun alert(): Call<AlertResponse>
 
 }

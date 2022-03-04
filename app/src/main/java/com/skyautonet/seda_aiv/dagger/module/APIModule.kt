@@ -10,8 +10,7 @@ import javax.inject.Singleton
 class APIModule {
     @Provides
     @Singleton
-    fun provideSbAppInterface(retrofit: Retrofit): SAAppInterface {
+    fun provideSAAppInterface(retrofit: Retrofit): SAAppInterface {
         return retrofit.create(SAAppInterface::class.java)
     }
-
 }

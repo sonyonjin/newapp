@@ -1,6 +1,6 @@
-package com.skyautonet.seda_aiv.storage.dao;
+package com.skyautonet.seda_aiv.data.source.local.dao;
 
-import com.skyautonet.seda_aiv.storage.entity.AppManagedConfig;
+import com.skyautonet.seda_aiv.data.source.local.entity.AppManagedConfig;
 
 import java.util.List;
 

@@ -6,12 +6,13 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class AppModule(application:Application) {
-    private var mApplication: Application = application
+class AppModule(
+    private val application: Application
+) {
 
     @Provides
     @Singleton
-    internal fun provideApplication():Application {
-        return mApplication
+    internal fun provideApplication(): Application {
+        return application
     }
 }

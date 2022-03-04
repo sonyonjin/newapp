@@ -1,11 +1,9 @@
 package com.skyautonet.seda_aiv.ui
 
-import android.content.Context
 import com.google.gson.Gson
 import com.skyautonet.seda_aiv.SAApp
 import com.skyautonet.seda_aiv.common.CommonUtils
 import com.skyautonet.seda_aiv.common.SharedPref
-import com.skyautonet.seda_aiv.rest.SAAppInterface
 import javax.inject.Inject
 
 abstract class BaseUseCaseImpl(var mBaseView: BaseView) : BaseUseCase {
@@ -15,8 +13,6 @@ abstract class BaseUseCaseImpl(var mBaseView: BaseView) : BaseUseCase {
 
     @Inject
     lateinit var commonUtils: CommonUtils
-    @Inject
-    lateinit  var saAppInterface: SAAppInterface
     @Inject
     lateinit var sharePref: SharedPref
 

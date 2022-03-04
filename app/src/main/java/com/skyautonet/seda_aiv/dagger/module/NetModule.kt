@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.skyautonet.seda_aiv.common.CommonUtils
 import com.skyautonet.seda_aiv.common.SharedPref
+import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
 
 import dagger.Module
 import dagger.Provides
@@ -19,8 +20,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module(includes = [AppModule::class])
-class NetModule(private var mBaseUrl: String) {
-
+class NetModule() {
     @Provides
     @Singleton
     internal fun provideOkHttpCache(application:Application):Cache {
@@ -51,7 +51,7 @@ class NetModule(private var mBaseUrl: String) {
             val response = chain.proceed(chain.request())
             response.newBuilder()
                 .header("Cache-Control", "only-if-cached")
-
+                .header("content-type", "text/html; charset=UTF-8")
                 .build()
             response
         })
@@ -63,7 +63,7 @@ class NetModule(private var mBaseUrl: String) {
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl(mBaseUrl)
+            .baseUrl("http://${RoomDatabaseUtil.getApplicationConfigData().ipAddress}/")
             .client(okHttpClient)
             .build()
     }
