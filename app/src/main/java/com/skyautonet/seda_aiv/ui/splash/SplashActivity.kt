@@ -24,7 +24,12 @@ class SplashActivity : BaseActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        showLoader()
+        viewModel.progress.observe(this) {
+            binding.progressBar.progress = it
+        }
+        viewModel.progressText.observe(this) {
+            binding.tvProgress.text = it
+        }
 
         if (!RequiredPermissionUtil.isCheckPermissions(this, RequiredPermissionUtil.SA_PERMISSIONS)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -64,12 +69,11 @@ class SplashActivity : BaseActivity() {
     }
 
     fun gotoMain() {
-        binding.root.postDelayed({
-            hideLoader()
+        viewModel.startLoading() {
             finish()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        }, 3000)
+        }
     }
 
 }

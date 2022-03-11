@@ -1,6 +1,7 @@
 package com.skyautonet.seda_aiv.dagger.module
 
 import android.app.Application
+import android.text.TextUtils
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -61,9 +62,11 @@ class NetModule() {
     @Provides
     @Singleton
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
+        val baseUrl = if (TextUtils.isEmpty(RoomDatabaseUtil.getApplicationConfigData().ipAddress)) "http://localhost/" else
+            "http://${RoomDatabaseUtil.getApplicationConfigData().ipAddress}/"
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl("http://${RoomDatabaseUtil.getApplicationConfigData().ipAddress}/")
+            .baseUrl(baseUrl)
             .client(okHttpClient)
             .build()
     }
