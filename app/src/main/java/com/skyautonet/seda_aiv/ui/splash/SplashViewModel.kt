@@ -1,7 +1,6 @@
 package com.skyautonet.seda_aiv.ui.splash
 
 import android.util.Log
-import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -45,7 +44,7 @@ class SplashViewModel : ViewModel() {
             for (i in 0..100) {
                 _progress.value = i
                 _progressText.value = "${i}%"
-                delay(100)
+                delay(10)
             }
             runnable.run()
         }

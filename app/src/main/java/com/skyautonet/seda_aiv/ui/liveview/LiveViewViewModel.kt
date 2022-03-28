@@ -10,6 +10,7 @@ import com.skyautonet.seda_aiv.model.AlertResponse
 import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
 import com.skyautonet.seda_aiv.data.Result
 import com.skyautonet.seda_aiv.data.Result.Success
+import com.skyautonet.seda_aiv.data.succeeded
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -35,9 +36,16 @@ class LiveViewViewModel(
     private var _alertResponse = alertSARepository.observeAlerts()
     private val _alertResponseObserver by lazy {
         Observer<Result<AlertResponse>>() { result ->
-            updateAlert(result)
+            if (result.succeeded) {
+                updateAlert(result)
+            }
         }
     }
+
+    var isVisibleAlertLeft = MutableLiveData(ObservableBoolean(false))
+    var isVisibleAlertRight = MutableLiveData(ObservableBoolean(false))
+    var isVisibleAlertTop = MutableLiveData(ObservableBoolean(false))
+    var isVisibleAlertBottom = MutableLiveData(ObservableBoolean(false))
 
     init {
         _appConfig.value = RoomDatabaseUtil.getApplicationConfigData()
@@ -45,10 +53,11 @@ class LiveViewViewModel(
         _alertResponse.observeForever(_alertResponseObserver)
     }
 
-    var isVisibleAlertLeft = MutableLiveData(ObservableBoolean(false))
-    var isVisibleAlertRight = MutableLiveData(ObservableBoolean(false))
-    var isVisibleAlertTop = MutableLiveData(ObservableBoolean(false))
-    var isVisibleAlertBottom = MutableLiveData(ObservableBoolean(false))
+    override fun onCleared() {
+        super.onCleared()
+        _appManagedConfigListLiveData.removeObserver(appManagedConfigListObserver)
+        _alertResponse.removeObserver(_alertResponseObserver)
+    }
 
     private fun computeResult(alertResponseResult: Result<AlertResponse>, checkString: String): Boolean {
         return if (alertResponseResult is Success) {

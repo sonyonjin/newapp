@@ -15,13 +15,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_h_alert_view"
+            android:id="@+id/gl_v_alert_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
 
         <org.videolan.libvlc.util.VLCVideoLayout
             android:id="@+id/vlc_video_layout"
@@ -30,10 +29,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_alert"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/gl_h_alert_view">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/gl_v_alert_view">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/gl_v_mid"
@@ -110,11 +109,438 @@
                 android:layout_height="0dp"
                 android:src="@drawable/truck"
                 android:scaleType="fitCenter"
-                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@id/gl_h_top"
                 app:layout_constraintBottom_toBottomOf="@id/gl_h_bottom" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_bg_alert"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#F9F9F9"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/gl_v_alert_view">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_v_bg_mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_h_bg_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.27" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_h_bg_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.73" />
+
+            <ImageView
+                android:id="@+id/iv_bg_top"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/bg_front"
+                android:scaleType="fitXY"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/gl_h_bg_top" />
+
+            <ImageView
+                android:id="@+id/iv_bg_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/bg_rear"
+                android:scaleType="fitXY"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/gl_h_bg_bottom"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:src="@drawable/img_text_two_d_view"
+                android:layout_marginTop="40dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_bg_truck"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:src="@drawable/truck"
+                android:scaleType="fitCenter"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/gl_h_bg_top"
+                app:layout_constraintBottom_toBottomOf="@id/gl_h_bg_bottom" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_bg_camera_preview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="@id/gl_v_alert_view"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_camera_preview" />
+
+            <ImageView
+                android:layout_width="140dp"
+                android:layout_height="20dp"
+                android:src="@drawable/img_text_front_camera"
+                android:layout_marginTop="40dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/img_camera_preview"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_live_menu"
+            android:layout_width="0dp"
+            android:layout_height="215dp"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="@id/gl_v_alert_view"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <FrameLayout
+                android:id="@+id/btn_live_menu_slide"
+                android:layout_width="130dp"
+                android:layout_height="65dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_collapse_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/btn_live_menu_collapse"
+                    android:contentDescription="@string/desc_collapse_live_menu_btn" />
+
+                <ImageView
+                    android:id="@+id/iv_expand_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible"
+                    android:src="@drawable/btn_live_menu_expand"
+                    android:contentDescription="@string/desc_expand_live_menu_btn" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/bg_live_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="65dp"
+                android:background="@drawable/bg_live_menu"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_live_menu_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintTop_toTopOf="@id/bg_live_menu">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_live_menu_btn_two_d"
+                    android:layout_width="110dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/bg_live_menu_item"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_h_live_menu_btn_two_d_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.15" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_h_live_menu_btn_two_d_bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.85" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_live_menu_btn_two_d"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_two_d_top" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/live_menu_two_d"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_two_d_bottom" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_live_menu_btn_three_d"
+                    android:layout_width="110dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/bg_live_menu_item"
+                    app:layout_constraintLeft_toRightOf="@id/cl_live_menu_btn_two_d"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_h_live_menu_btn_three_d_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.15" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_h_live_menu_btn_three_d_bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.85" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_live_menu_btn_three_d"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_three_d_top" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/live_menu_three_d"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_three_d_bottom" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_live_menu_btn_front_bird"
+                    android:layout_width="110dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/bg_live_menu_item"
+                    app:layout_constraintRight_toLeftOf="@id/cl_live_menu_btn_rear_bird"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_h_live_menu_btn_front_bird_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.15" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_h_live_menu_btn_front_bird_bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.85" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_live_menu_btn_front_bird"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_front_bird_top" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/live_menu_front_bird_view"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_front_bird_bottom" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_live_menu_btn_rear_bird"
+                    android:layout_width="110dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/bg_live_menu_item"
+                    app:layout_constraintRight_toLeftOf="@id/cl_live_menu_btn_left_bird"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_h_live_menu_btn_rear_bird_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.15" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_h_live_menu_btn_rear_bird_bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.85" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_live_menu_btn_rear_bird"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_rear_bird_top" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/live_menu_rear_bird_view"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_rear_bird_bottom" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_live_menu_btn_left_bird"
+                    android:layout_width="110dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/bg_live_menu_item"
+                    app:layout_constraintRight_toLeftOf="@id/cl_live_menu_btn_right_bird"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_h_live_menu_btn_left_bird_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.15" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_h_live_menu_btn_left_bird_bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.85" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_live_menu_btn_left_bird"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_left_bird_top" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/live_menu_three_d"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_left_bird_bottom" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_live_menu_btn_right_bird"
+                    android:layout_width="110dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/bg_live_menu_item"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_h_live_menu_btn_right_bird_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.15" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_h_live_menu_btn_right_bird_bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.85" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_live_menu_btn_right_bird"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_right_bird_top" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/live_menu_right_bird_view"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_right_bird_bottom" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <FrameLayout
+                android:id="@+id/btn_live_menu_slide_dummy"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="@id/btn_live_menu_slide"
+                app:layout_constraintRight_toRightOf="@id/btn_live_menu_slide"
+                app:layout_constraintTop_toTopOf="@id/cl_live_menu_item"
+                app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -27,6 +27,13 @@ open class BaseFragment : Fragment(), BaseUseCase {
         dialog = commonUtils.createCustomLoader(requireContext(), false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (activity is BaseActivity) {
+            (activity as BaseActivity).onResumedFragment(this)
+        }
+    }
+
     override fun showLoader() {
         dialog.show()
     }

@@ -9,7 +9,7 @@ import com.skyautonet.seda_aiv.common.CommonUtils
 import com.skyautonet.seda_aiv.common.SharedPref
 import javax.inject.Inject
 
-open class BaseActivity : AppCompatActivity(), BaseUseCase {
+open class BaseActivity : AppCompatActivity(), IBaseActivity, BaseUseCase {
 
     lateinit var dialog: Dialog
 
@@ -55,5 +55,6 @@ open class BaseActivity : AppCompatActivity(), BaseUseCase {
     override fun onBackPress() {
     }
 
-
+    override fun onResumedFragment(fragment: BaseFragment) {
+    }
 }

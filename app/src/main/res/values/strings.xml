@@ -5,4 +5,18 @@
     <string name="title_video_list">Video list</string>
     <string name="title_video_storage">Video storage</string>
     <string name="title_setting">Setting</string>
+    <string name="desc_collapse_menu_btn">To collapse menu</string>
+    <string name="desc_expand_menu_btn">To expand menu</string>
+    <string name="home_connection_date">Connection date</string>
+    <string name="home_user_name">User name</string>
+    <string name="home_product_reg_num">Product registration number</string>
+    <string name="home_network_state">Network state</string>
+    <string name="live_menu_two_d">2D</string>
+    <string name="live_menu_three_d">3D</string>
+    <string name="live_menu_front_bird_view">Front Bird View</string>
+    <string name="live_menu_rear_bird_view">Rear Bird View</string>
+    <string name="live_menu_left_bird_view">Left Bird View</string>
+    <string name="live_menu_right_bird_view">Right Bird View</string>
+    <string name="desc_collapse_live_menu_btn">To collapse live menu</string>
+    <string name="desc_expand_live_menu_btn">To expand live menu</string>
 </resources>

@@ -7,17 +7,21 @@ import androidx.lifecycle.ViewModel
 import com.skyautonet.seda_aiv.data.AppConfig
 import com.skyautonet.seda_aiv.data.source.local.entity.AppManagedConfig
 import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomeViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
 
     private val _appConfig = MutableLiveData<AppConfig>()
     val appConfig: LiveData<AppConfig>
         get() = _appConfig
+
+    private val _connectDate = MutableLiveData<String>().apply {
+        val date = Date(System.currentTimeMillis())
+        val outputFormat: java.text.DateFormat = SimpleDateFormat("yyyy.MM.dd")
+        value = outputFormat.format(date)
+    }
+    val connectDate: LiveData<String> = _connectDate
 
     private val _appManagedConfigListLiveData = RoomDatabaseUtil.getApplicationConfigLiveData()
 
@@ -33,6 +37,26 @@ class HomeViewModel : ViewModel() {
     init {
         _appConfig.value = RoomDatabaseUtil.getApplicationConfigData()
         _appManagedConfigListLiveData.observeForever(appManagedConfigListObserver)
+    }
+
+    private val _userName = MutableLiveData<String>().apply {
+        value = appConfig.value?.ssid
+    }
+    val userName: LiveData<String> = _userName
+
+    private val _productRegNum = MutableLiveData<String>().apply {
+        value = appConfig.value?.regNo
+    }
+    val productRegNum: LiveData<String> = _productRegNum
+
+    private val _networkState = MutableLiveData<String>().apply {
+        value = "Connect"
+    }
+    val networkState: LiveData<String> = _networkState
+
+    override fun onCleared() {
+        super.onCleared()
+        _appManagedConfigListLiveData.removeObserver(appManagedConfigListObserver)
     }
 
     fun updateManagedConfig(managedConfig: AppManagedConfig?) {

@@ -13,11 +13,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:colorBackground">#FFDDDDDD</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
 
     </style>
 
     <style name="Theme.SeDAAIV.BottomNavigationView">
-        <item name="itemBackground">@drawable/selector_bottom_nav</item>
+        <item name="itemBackground">@drawable/selector_item_checked</item>
         <item name="labelVisibilityMode">labeled</item>
         <item name="itemTextAppearanceActive">@style/Widget.MaterialComponents.BottomNavigationView</item>
         <item name="itemIconSize">40dp</item>
