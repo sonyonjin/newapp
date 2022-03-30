@@ -1,11 +1,14 @@
 package com.skyautonet.seda_aiv.ui.home
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.skyautonet.seda_aiv.R
+import com.skyautonet.seda_aiv.SAApp
 import com.skyautonet.seda_aiv.databinding.FragmentHomeBinding
 import com.skyautonet.seda_aiv.ui.BaseFragment
 
@@ -42,7 +45,9 @@ class HomeFragment : BaseFragment() {
         }
         viewModel.networkState.observe(viewLifecycleOwner) {
             binding.tvNetworkState.text = it
-            binding.tvNetworkState.isSelected = it.equals("Connect")
+            val isConnected = it.equals(SAApp.instance.getString(R.string.home_network_state_connected))
+            binding.tvNetworkState.isSelected = isConnected
+            binding.tvNetworkConnect.visibility = if (isConnected) View.GONE else View.VISIBLE
         }
 
         initView()
@@ -55,6 +60,15 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initView() {
-
+        binding.tvNetworkConnect.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_WIFI_SETTINGS));
+        }
     }
+
+    override fun onStart() {
+        super.onStart()
+
+        viewModel.confirmNetworkState()
+    }
+
 }

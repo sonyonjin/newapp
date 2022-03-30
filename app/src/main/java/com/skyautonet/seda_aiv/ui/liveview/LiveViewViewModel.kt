@@ -11,12 +11,13 @@ import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
 import com.skyautonet.seda_aiv.data.Result
 import com.skyautonet.seda_aiv.data.Result.Success
 import com.skyautonet.seda_aiv.data.succeeded
+import com.skyautonet.seda_aiv.ui.BaseViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class LiveViewViewModel(
     private val alertSARepository: SARepository = SAApp.saRepository
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _appConfig = MutableLiveData<AppConfig>()
     val appConfig: LiveData<AppConfig>

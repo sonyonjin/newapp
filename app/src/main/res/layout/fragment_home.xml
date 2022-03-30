@@ -242,20 +242,38 @@
                     android:text="@string/home_network_state"
                     android:textSize="17sp" />
 
-                <TextView
-                    android:id="@+id/tv_network_state"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_alignParentEnd="true"
-                    android:text="@{viewmodel.networkState}"
-                    android:textSize="17sp"
-                    android:textColor="@color/color_connect_text"
-                    android:layout_centerVertical="true"
-                    android:paddingLeft="30dp"
-                    android:paddingRight="30dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:background="@drawable/bg_connect"/>
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:id="@+id/tv_network_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewmodel.networkState}"
+                        android:textSize="15sp"
+                        android:textColor="@color/color_connect_text"
+                        android:layout_gravity="center" />
+
+                    <TextView
+                        android:id="@+id/tv_network_connect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_home_network_connect"
+                        android:textSize="15sp"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="20dp"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:background="@drawable/bg_connect"
+                        android:layout_gravity="center"
+                        android:gravity="center" />
+                </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

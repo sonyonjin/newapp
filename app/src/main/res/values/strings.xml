@@ -19,4 +19,7 @@
     <string name="live_menu_right_bird_view">Right Bird View</string>
     <string name="desc_collapse_live_menu_btn">To collapse live menu</string>
     <string name="desc_expand_live_menu_btn">To expand live menu</string>
+    <string name="btn_home_network_connect">Connect</string>
+    <string name="home_network_state_connected">Connected</string>
+    <string name="home_network_state_no_connection">No Connection</string>
 </resources>

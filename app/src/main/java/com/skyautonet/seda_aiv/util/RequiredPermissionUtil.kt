@@ -13,7 +13,8 @@ class RequiredPermissionUtil {
 
         val SA_PERMISSIONS: Array<String> = arrayOf(
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION
         )
 
         fun isCheckPermissions(context: Context, permissions: Array<String>): Boolean {

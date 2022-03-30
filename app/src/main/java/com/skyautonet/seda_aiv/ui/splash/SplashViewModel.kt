@@ -3,15 +3,15 @@ package com.skyautonet.seda_aiv.ui.splash
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skyautonet.seda_aiv.SAApp
+import com.skyautonet.seda_aiv.ui.BaseViewModel
 import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
 import com.skyautonet.seda_aiv.util.SdCardUtil
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SplashViewModel : ViewModel() {
+class SplashViewModel : BaseViewModel() {
     var _progress =  MutableLiveData<Int>().apply {
         value = 0
     }

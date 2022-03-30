@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.lifecycle.ViewModelProvider
 import com.skyautonet.seda_aiv.databinding.FragmentVideoStorageBinding
 import com.skyautonet.seda_aiv.ui.BaseFragment
@@ -28,9 +30,14 @@ class VideoStorageFragment : BaseFragment() {
         _binding = FragmentVideoStorageBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textVideoStorage
-        viewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        binding.wvVideo.loadUrl("http://172.16.30.218:5000/")
+        binding.wvVideo.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
+                return super.shouldOverrideUrlLoading(view, request)
+            }
         }
         return root
     }

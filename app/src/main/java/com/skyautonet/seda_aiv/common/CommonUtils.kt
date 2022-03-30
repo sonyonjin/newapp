@@ -8,8 +8,11 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
+import android.net.wifi.WifiManager
 import android.os.Build
 import android.provider.Settings
+import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -19,7 +22,6 @@ import com.skyautonet.seda_aiv.R
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
 
 class CommonUtils(internal var mContext: Context) {
 
@@ -94,9 +96,7 @@ class CommonUtils(internal var mContext: Context) {
         }finally {
             return resultDate
         }
-
     }
-
 
     fun isAppIsInBackground(context: Context): Boolean {
         var isInBackground = true
@@ -133,7 +133,6 @@ class CommonUtils(internal var mContext: Context) {
         Toast.makeText(mContext, message, Toast.LENGTH_LONG).show()
     }
 
-
     // soft keyboard hide
     fun hideKeyboard(activity: Activity) {
         // Check if no view has focus:
@@ -150,7 +149,6 @@ class CommonUtils(internal var mContext: Context) {
         } catch (e: Exception) {
 
         }
-
     }
 
     // soft keyboard hide
@@ -165,7 +163,6 @@ class CommonUtils(internal var mContext: Context) {
         } catch (e: Exception) {
 
         }
-
     }
 
     // soft keyboard show
@@ -180,9 +177,7 @@ class CommonUtils(internal var mContext: Context) {
         } catch (e: Exception) {
 
         }
-
     }
-
 
     fun createCustomLoader(mContext: Context, isCancelable: Boolean): Dialog {
         val dialog = Dialog(mContext)
@@ -212,6 +207,20 @@ class CommonUtils(internal var mContext: Context) {
         }
     }
 
+    fun confirmSSID(context: Context, ssid: String): Boolean {
+        val connManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager;
+        val networkInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+        if (networkInfo?.isConnected == true) {
+            val wifiManager = context.getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
+            val connectionInfo = wifiManager.connectionInfo
 
+            if (connectionInfo != null && !TextUtils.isEmpty(connectionInfo.ssid)) {
+                if (connectionInfo.ssid.replace("\"", "").equals(ssid)) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
 }
 

@@ -7,7 +7,7 @@ import com.skyautonet.seda_aiv.dagger.module.NetModule
 import com.skyautonet.seda_aiv.data.source.SARepository
 import com.skyautonet.seda_aiv.ui.BaseFragment
 import com.skyautonet.seda_aiv.ui.BaseActivity
-import com.skyautonet.seda_aiv.ui.BaseUseCaseImpl
+import com.skyautonet.seda_aiv.ui.BaseViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -17,5 +17,5 @@ interface NetComponent {
     fun inject(saRepository: SARepository)
     fun inject(baseActivity: BaseActivity)
     fun inject(baseFragment: BaseFragment)
-    fun inject(baseUseCaseImpl: BaseUseCaseImpl)
+    fun inject(baseViewModel: BaseViewModel)
 }

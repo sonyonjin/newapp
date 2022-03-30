@@ -3,14 +3,16 @@ package com.skyautonet.seda_aiv.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
+import com.skyautonet.seda_aiv.R
+import com.skyautonet.seda_aiv.SAApp
 import com.skyautonet.seda_aiv.data.AppConfig
 import com.skyautonet.seda_aiv.data.source.local.entity.AppManagedConfig
+import com.skyautonet.seda_aiv.ui.BaseViewModel
 import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel : BaseViewModel() {
 
     private val _appConfig = MutableLiveData<AppConfig>()
     val appConfig: LiveData<AppConfig>
@@ -50,7 +52,7 @@ class HomeViewModel : ViewModel() {
     val productRegNum: LiveData<String> = _productRegNum
 
     private val _networkState = MutableLiveData<String>().apply {
-        value = "Connect"
+        value = SAApp.instance.getString(R.string.home_network_state_no_connection)
     }
     val networkState: LiveData<String> = _networkState
 
@@ -64,6 +66,20 @@ class HomeViewModel : ViewModel() {
             AppConfig(managedConfig)
         } else {
             RoomDatabaseUtil.getApplicationConfigData()
+        }
+    }
+
+    fun confirmNetworkState() {
+        var isConnected = false
+
+        appConfig.value?.ssid?.let {
+            isConnected = commonUtils.confirmSSID(SAApp.instance, it)
+        }
+
+        if (isConnected) {
+            _networkState.value = SAApp.instance.getString(R.string.home_network_state_connected)
+        } else {
+            _networkState.value = SAApp.instance.getString(R.string.home_network_state_no_connection)
         }
     }
 }
