@@ -22,4 +22,13 @@
     <string name="btn_home_network_connect">Connect</string>
     <string name="home_network_state_connected">Connected</string>
     <string name="home_network_state_no_connection">No Connection</string>
+    <string name="btn_video_type_total">Total</string>
+    <string name="btn_video_type_driving">Driving</string>
+    <string name="btn_video_type_parking">Parking</string>
+    <string name="btn_video_type_event">Event</string>
+    <string name="video_list_header_date">Date</string>
+    <string name="video_list_header_time">Time</string>
+    <string name="video_list_header_event">Event</string>
+    <string name="video_list_header_file_size">File Size</string>
+    <string name="video_list_header_download">Download</string>
 </resources>

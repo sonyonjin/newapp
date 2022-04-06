@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.skyautonet.seda_aiv.model.AlertResponse
 import com.skyautonet.seda_aiv.model.AlertItem
 import com.skyautonet.seda_aiv.data.Result
+import com.skyautonet.seda_aiv.model.VideoListResponse
 
 object FakeSARemoteDataSource : SADataSource {
 
@@ -16,6 +17,7 @@ object FakeSARemoteDataSource : SADataSource {
     }
 
     private val observableAlerts = MutableLiveData<Result<AlertResponse>>()
+    private val observableVideoList = MutableLiveData<Result<VideoListResponse>>()
 
     override fun observeAlerts(): LiveData<Result<AlertResponse>> {
         return observableAlerts
@@ -26,6 +28,17 @@ object FakeSARemoteDataSource : SADataSource {
     }
 
     override suspend fun refreshAlerts() {
+    }
+
+    override fun observeVideoList(): LiveData<Result<VideoListResponse>> {
+        return observableVideoList
+    }
+
+    override suspend fun getVideoList(): Result<VideoListResponse> {
+        return observableVideoList.value ?: Result.Success(VideoListResponse())
+    }
+
+    override suspend fun refreshVideoList(videoType: Int) {
     }
 
 }

@@ -11,4 +11,10 @@ interface SAAppInterface {
     @GET("alert2.php")
     fun alert(): Call<AlertResponse>
 
+    //date.php
+    @GET("VideoList.php")
+    fun video_list(
+        @Query("video_type") video_type: Int
+    ): Call<VideoListResponse>
+
 }

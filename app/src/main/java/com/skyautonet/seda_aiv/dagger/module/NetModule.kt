@@ -5,6 +5,7 @@ import android.text.TextUtils
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.skyautonet.seda_aiv.BuildConfig
 import com.skyautonet.seda_aiv.common.CommonUtils
 import com.skyautonet.seda_aiv.common.SharedPref
 import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
@@ -44,9 +45,11 @@ class NetModule() {
         okClient.writeTimeout(30000, TimeUnit.MILLISECONDS)
         okClient.readTimeout(30000, TimeUnit.MILLISECONDS)
 
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        okClient.interceptors().add(interceptor)
+        if (BuildConfig.DEBUG) {
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
+            okClient.interceptors().add(interceptor)
+        }
 
         okClient.interceptors().add(Interceptor { chain ->
             val response = chain.proceed(chain.request())

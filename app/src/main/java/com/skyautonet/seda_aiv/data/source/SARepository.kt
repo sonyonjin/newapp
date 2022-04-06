@@ -7,6 +7,7 @@ import com.skyautonet.seda_aiv.common.SharedPref
 import com.skyautonet.seda_aiv.model.AlertResponse
 import com.skyautonet.seda_aiv.rest.SAAppInterface
 import com.skyautonet.seda_aiv.data.Result
+import com.skyautonet.seda_aiv.model.VideoListResponse
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -25,4 +26,8 @@ abstract class SARepository {
     abstract fun observeAlerts(): LiveData<Result<AlertResponse>>
     abstract suspend fun getAlerts(): Result<AlertResponse>
     abstract suspend fun refreshAlerts()
+
+    abstract fun observeVideoList(): LiveData<Result<VideoListResponse>>
+    abstract suspend fun getVideoList(): Result<VideoListResponse>
+    abstract suspend fun refreshVideoList(videoType: Int)
 }

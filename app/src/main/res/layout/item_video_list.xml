@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_v_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_v_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_v_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_v_file_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="2021-12-31"
+        android:textSize="11sp"
+        android:textColor="@color/color_video_list_item_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/gl_v_date" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="23:59:14 ~ 00:00:13"
+        android:textSize="11sp"
+        android:textColor="@color/color_video_list_item_text"
+        app:layout_constraintLeft_toLeftOf="@id/gl_v_date"
+        app:layout_constraintRight_toRightOf="@id/gl_v_time" />
+
+    <TextView
+        android:id="@+id/tv_event"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Driving"
+        android:textSize="11sp"
+        android:textColor="@color/color_video_list_item_text"
+        app:layout_constraintLeft_toLeftOf="@id/gl_v_time"
+        app:layout_constraintRight_toRightOf="@id/gl_v_event" />
+
+    <TextView
+        android:id="@+id/tv_file_size"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="1.6M"
+        android:textSize="11sp"
+        android:textColor="@color/color_video_list_item_text"
+        app:layout_constraintLeft_toLeftOf="@id/gl_v_event"
+        app:layout_constraintRight_toRightOf="@id/gl_v_file_size" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_download"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toLeftOf="@id/gl_v_file_size"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_download"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:src="@drawable/selector_btn_video_list_download"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

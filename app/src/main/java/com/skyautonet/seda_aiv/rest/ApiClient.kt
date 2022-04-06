@@ -1,5 +1,6 @@
 package com.skyautonet.seda_aiv.rest
 
+import com.skyautonet.seda_aiv.BuildConfig
 import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -18,9 +19,11 @@ class ApiClient {
             okClient.writeTimeout(60000, TimeUnit.MILLISECONDS)
             okClient.readTimeout(60000, TimeUnit.MILLISECONDS)
 
-            val interceptor = HttpLoggingInterceptor()
-            interceptor.level = HttpLoggingInterceptor.Level.BODY
-            okClient.interceptors().add(interceptor)
+            if (BuildConfig.DEBUG) {
+                val interceptor = HttpLoggingInterceptor()
+                interceptor.level = HttpLoggingInterceptor.Level.BODY
+                okClient.interceptors().add(interceptor)
+            }
 
             okClient.interceptors().add(Interceptor { chain ->
                 val response = chain.proceed(chain.request())
