@@ -6,9 +6,7 @@ import com.skyautonet.seda_aiv.dagger.component.NetComponent
 import com.skyautonet.seda_aiv.dagger.module.APIModule
 import com.skyautonet.seda_aiv.dagger.module.AppModule
 import com.skyautonet.seda_aiv.dagger.module.NetModule
-import com.skyautonet.seda_aiv.data.source.DefaultRemoteSARepository
-import com.skyautonet.seda_aiv.data.source.FakeSARemoteDataSource
-import com.skyautonet.seda_aiv.data.source.SARepository
+import com.skyautonet.seda_aiv.data.source.*
 
 class SAApp : Application() {
 
@@ -35,8 +33,5 @@ class SAApp : Application() {
             .netModule(NetModule())
             .aPIModule(APIModule())
             .build()
-
-        saRepository = DefaultRemoteSARepository(FakeSARemoteDataSource)
-        netComponent.inject(saRepository)
     }
 }

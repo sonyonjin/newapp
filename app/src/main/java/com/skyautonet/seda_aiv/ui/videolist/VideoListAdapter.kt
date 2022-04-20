@@ -39,6 +39,9 @@ class VideoListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val videoItem = videoList[position]
 
+        setEnabledItem(holder, videoItem.isEnable)
+        holder.clDownload.tag = position
+
         if (!TextUtils.isEmpty(videoItem.date_time)) {
             val sDateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault())
             val date = sDateFormat.parse(videoItem.date_time)
@@ -90,21 +93,35 @@ class VideoListAdapter(
         if (!TextUtils.isEmpty(videoItem.size)) {
             "${videoItem.size}M".also {
                 holder.tvFileSize.text = it
-                holder.clDownload.isEnabled = true
                 holder.clDownload.setOnClickListener {
-                    it.isEnabled = false
-                    holder.tvDate.isEnabled = false
-                    holder.tvTime.isEnabled = false
-                    holder.tvEvent.isEnabled = false
-                    holder.tvFileSize.isEnabled = false
-                    holder.clDownload.isEnabled = false
-                    holder.ivDownload.isEnabled = false
-                    videoItemClick.onDownload(videoItem)
+                    holder.itemView.tag = videoItem
+                    videoItemClick.onDownload(holder)
                 }
             }
         } else {
             holder.tvFileSize.text = ""
             holder.clDownload.isEnabled = false
+        }
+    }
+
+    private fun setEnabledItem(viewHolder: ViewHolder, isEnabled: Boolean) {
+        viewHolder.tvDate.isEnabled = isEnabled
+        viewHolder.tvTime.isEnabled = isEnabled
+        viewHolder.tvEvent.isEnabled = isEnabled
+        viewHolder.tvFileSize.isEnabled = isEnabled
+        viewHolder.clDownload.isEnabled = isEnabled
+        viewHolder.ivDownload.isEnabled = isEnabled
+    }
+
+    fun setDisableItem(viewHolder: ViewHolder) {
+        if (viewHolder.itemView.tag is VideoItem) {
+            val videoItem = viewHolder.itemView.tag as VideoItem
+            videoItem.isEnable = false
+
+            if (viewHolder.clDownload.tag is Int) {
+                val position = viewHolder.clDownload.tag as Int
+                notifyItemChanged(position)
+            }
         }
     }
 
@@ -117,11 +134,15 @@ class VideoListAdapter(
         val tvTime = itemView.findViewById<TextView>(R.id.tv_time)
         val tvEvent = itemView.findViewById<TextView>(R.id.tv_event)
         val tvFileSize = itemView.findViewById<TextView>(R.id.tv_file_size)
-        val clDownload = itemView.findViewById<ConstraintLayout>(R.id.cl_download)
+        val clDownload = itemView.findViewById<ConstraintLayout>(R.id.cl_play)
         val ivDownload = itemView.findViewById<ImageView>(R.id.iv_download)
     }
 
     fun setList(videoList: MutableList<VideoItem>) {
         this.videoList = videoList
+    }
+
+    interface VideoItemClick {
+        fun onDownload(viewHolder: VideoListAdapter.ViewHolder)
     }
 }

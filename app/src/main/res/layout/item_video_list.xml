@@ -77,7 +77,7 @@
         app:layout_constraintRight_toRightOf="@id/gl_v_file_size" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_download"
+        android:id="@+id/cl_play"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="@id/gl_v_file_size"

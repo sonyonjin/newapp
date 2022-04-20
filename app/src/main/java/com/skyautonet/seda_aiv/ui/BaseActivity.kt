@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import com.skyautonet.seda_aiv.SAApp
 import com.skyautonet.seda_aiv.common.CommonUtils
 import com.skyautonet.seda_aiv.common.SharedPref
+import com.skyautonet.seda_aiv.ui.splash.SplashActivity
 import javax.inject.Inject
 
 open class BaseActivity : AppCompatActivity(), IBaseActivity, BaseUseCase {
@@ -22,8 +23,12 @@ open class BaseActivity : AppCompatActivity(), IBaseActivity, BaseUseCase {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as SAApp).getNetComponent().inject(this)
-        dialog = commonUtils.createCustomLoader(this, false)
+
+        // 최초 Activity인 SplashActivity에서는 permission획득후 하도록 해야하므로 제외함
+        if (this !is SplashActivity) {
+            (application as SAApp).getNetComponent().inject(this)
+            dialog = commonUtils.createCustomLoader(this, false)
+        }
     }
 
     override fun onStart() {

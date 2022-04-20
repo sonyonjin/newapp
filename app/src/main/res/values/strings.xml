@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">SedaAIV</string>
+    <string name="config">Enter data without any space after \'=\' and end the line with a \';\' also don\'t change the arrangement\nssid=pi;\npassword=12345678;\nProduct Reg.No=1;\nRTSP Link (Camera)=rtsp://192.168.0.3:8554/test;\nRTSP Link (Channel1)=rtsp://192.168.0.10:8556/test;\nRTSP Link (Channel2)=rtsp://192.168.0.10:8558/test;\nIP Address of Access Point=192.168.0.10;\n</string>
     <string name="title_home">Home</string>
     <string name="title_live_view">Live view</string>
     <string name="title_video_list">Video list</string>
@@ -31,4 +32,25 @@
     <string name="video_list_header_event">Event</string>
     <string name="video_list_header_file_size">File Size</string>
     <string name="video_list_header_download">Download</string>
+    <string name="video_list_download_dialog_msg">Do you want to save the video?</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_cancel">CANCEL</string>
+    <string name="video_total_count">Total %d</string>
+    <string name="video_storage_delete">Delete</string>
+    <string name="video_storage_header_play">Play</string>
+    <string name="video_storage_delete_dialog_msg">Do you want to delete the video?</string>
+    <string name="setting_menu_dvr_option">DVR Option</string>
+    <string name="setting_menu_calibration">Calibration</string>
+    <string name="setting_menu_network">Network</string>
+    <string name="setting_menu_display">Display</string>
+    <string name="setting_menu_camera_brightness">Camera Brightness</string>
+    <string name="setting_menu_engineer_mode">Engineer Mode</string>
+    <string name="calib_regi_explan">Calibration is required for the operation of this system.\nWould you like to setting the calibration?</string>
+    <string name="calib_regi_explan_registed">Calibration data already exists.\nWould you like to reset the data?</string>
+    <string name="calib_regi_notice">Setting the calibration can take a long time.\nWe recommend that you set up with professional help.</string>
+    <string name="calib_regi_btn_setup">Setup</string>
+    <string name="camera_channel_select_explan">How many cameras are installed?</string>
+    <string name="calib_btn_prev">Prev</string>
+    <string name="calib_btn_next">Next</string>
+    <string name="camera_channel_explan">Arrange the Calibration matts around the vehicle.</string>
 </resources>

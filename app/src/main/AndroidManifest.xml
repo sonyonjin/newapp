@@ -35,6 +35,11 @@
             android:screenOrientation="landscape"
             android:exported="true">
         </activity>
+
+        <activity
+            android:name=".ui.fullvideo.FullVideoActivity"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 
 </manifest>

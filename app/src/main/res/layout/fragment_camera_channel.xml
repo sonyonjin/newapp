@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.skyautonet.seda_aiv.ui.setting.calibration.CameraChannelViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/tv_camera_channel_explan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/camera_channel_explan"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/img_camera_channel_4"
+            android:layout_margin="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_camera_channel_explan"
+            app:layout_constraintBottom_toTopOf="@id/ll_camera_channel_select_btn">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewmodel.isVisibleCameraChannel4 ? View.VISIBLE : View.GONE}"
+                android:src="@drawable/img_camera_channel_4" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewmodel.isVisibleCameraChannel6 ? View.VISIBLE : View.GONE}"
+                android:src="@drawable/img_camera_channel_6" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewmodel.isVisibleCameraChannel8 ? View.VISIBLE : View.GONE}"
+                android:src="@drawable/img_camera_channel_8" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_camera_channel_select_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.95">
+
+            <TextView
+                android:id="@+id/tv_camera_channel_select_btn_preview"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/calib_btn_prev"
+                android:textSize="17sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:padding="5dp"
+                android:background="@drawable/shape_bg_btn_video_type_selected" />
+
+            <TextView
+                android:id="@+id/tv_camera_channel_select_btn_next"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/calib_btn_next"
+                android:textSize="17sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_marginStart="20dp"
+                android:padding="5dp"
+                android:background="@drawable/shape_bg_btn_video_type_selected" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

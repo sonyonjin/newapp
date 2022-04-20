@@ -2,10 +2,9 @@ package com.skyautonet.seda_aiv.util
 
 import android.content.Context
 import android.os.Environment
-import com.skyautonet.seda_aiv.data.source.local.entity.AppManagedConfig
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
+import com.skyautonet.seda_aiv.R
+import com.skyautonet.seda_aiv.data.source.local.db.entity.AppManagedConfig
+import java.io.*
 
 object SdCardUtil {
 
@@ -69,96 +68,130 @@ object SdCardUtil {
         val appManagedConfig = AppManagedConfig()
 
         getConfigFile(context)?.let {
-            val str = loadConfigFile(it)
+            var str = loadConfigFile(it)
             if (str == null) {
-                saveConfigFile(it, "Enter data without any space after '=' and end the line with a ';' also don't change the arrangement\nssid=;\npassword=;\nProduct Reg.No=;\nRTSP Link (Camera)=;\nRTSP Link (Channel1)=;\nRTSP Link (Channel2)=;\nIP Address of Access Point=;\n")
-            } else {
-                val dataConfig: List<String> = str.split(";")
-                for (i in 1..7) {
-                    val keyAndValue = dataConfig[i].split("=")
-                    var check: Boolean = false
-                    when (i) {
-                        1 -> {
-                            keyAndValue[1].also { value ->
-                                if (value.isEmpty()) {
-                                    check = true
-                                    errorMsg.append("SSID,")
-                                } else {
-                                    appManagedConfig.ssid = value
-                                }
+                str = context.resources.getString(R.string.config)
+                saveConfigFile(it, str)
+            }
+
+            val dataConfig: List<String> = str.split(";")
+            for (i in 1..7) {
+                val keyAndValue = dataConfig[i].split("=")
+                var check: Boolean = false
+                when (i) {
+                    1 -> {
+                        keyAndValue[1].also { value ->
+                            if (value.isEmpty()) {
+                                check = true
+                                errorMsg.append("SSID,")
+                            } else {
+                                appManagedConfig.ssid = value
                             }
                         }
-                        2 -> {
-                            keyAndValue[1].also { value ->
-                                if (value.isEmpty()) {
-                                    check = true
-                                    errorMsg.append("Password,")
-                                } else {
-                                    appManagedConfig.password = value
-                                }
+                    }
+                    2 -> {
+                        keyAndValue[1].also { value ->
+                            if (value.isEmpty()) {
+                                check = true
+                                errorMsg.append("Password,")
+                            } else {
+                                appManagedConfig.password = value
                             }
                         }
-                        3 -> {
-                            keyAndValue[1].also { value ->
-                                if (value.isEmpty()) {
-                                    check = true
-                                    errorMsg.append("Reg no,,")
-                                } else {
-                                    appManagedConfig.regNo = value
-                                }
+                    }
+                    3 -> {
+                        keyAndValue[1].also { value ->
+                            if (value.isEmpty()) {
+                                check = true
+                                errorMsg.append("Reg no,,")
+                            } else {
+                                appManagedConfig.regNo = value
                             }
                         }
-                        4 -> {
-                            keyAndValue[1].also { value ->
-                                if (value.isEmpty()) {
-                                    check = true
-                                    errorMsg.append("RTSP Link 1,")
-                                } else {
-                                    appManagedConfig.rtspLink1 = value
-                                }
+                    }
+                    4 -> {
+                        keyAndValue[1].also { value ->
+                            if (value.isEmpty()) {
+                                check = true
+                                errorMsg.append("RTSP Link 1,")
+                            } else {
+                                appManagedConfig.rtspLink1 = value
                             }
                         }
-                        5 -> {
-                            keyAndValue[1].also { value ->
-                                if (value.isEmpty()) {
-                                    check = true
-                                    errorMsg.append("RTSP Link 2,")
-                                } else {
-                                    appManagedConfig.rtspLink2 = value
-                                }
+                    }
+                    5 -> {
+                        keyAndValue[1].also { value ->
+                            if (value.isEmpty()) {
+                                check = true
+                                errorMsg.append("RTSP Link 2,")
+                            } else {
+                                appManagedConfig.rtspLink2 = value
                             }
                         }
-                        6 -> {
-                            keyAndValue[1].also { value ->
-                                if (value.isEmpty()) {
-                                    check = true
-                                    errorMsg.append("RTSP Link 3,")
-                                } else {
-                                    appManagedConfig.rtspLink3 = value
-                                }
+                    }
+                    6 -> {
+                        keyAndValue[1].also { value ->
+                            if (value.isEmpty()) {
+                                check = true
+                                errorMsg.append("RTSP Link 3,")
+                            } else {
+                                appManagedConfig.rtspLink3 = value
                             }
                         }
-                        7 -> {
-                            keyAndValue[1].also { value ->
-                                if (value.isEmpty()) {
-                                    check = true
-                                    errorMsg.append("IP Address,")
-                                } else {
-                                    appManagedConfig.ipAddress = value
-                                }
+                    }
+                    7 -> {
+                        keyAndValue[1].also { value ->
+                            if (value.isEmpty()) {
+                                check = true
+                                errorMsg.append("IP Address,")
+                            } else {
+                                appManagedConfig.ipAddress = value
                             }
                         }
                     }
                 }
 
-                return if (errorMsg.length > 0) {
-                    errorMsg.toString()
-                } else {
-                    RoomDatabaseUtil.updateAppConfig(appManagedConfig)
-                    null
+                if (errorMsg.length > 0) {
+                    return errorMsg.toString()
                 }
             }
         }
+        RoomDatabaseUtil.updateAppConfig(appManagedConfig)
         return null
+    }
+
+    fun getVideoFileDirectory(context: Context): File? {
+        return when (Environment.getExternalStorageState()) {
+            Environment.MEDIA_MOUNTED -> {
+                val pathString = getMountedExternalMediaFileDir(context)
+                return pathString?.let {
+                    File(pathString + "/video_file")
+                }
+            }
+            else -> {
+                null
+            }
+        }
+    }
+
+    fun getVideoFile(context: Context, fileName: String): File? {
+        val videoFileDirectory = getVideoFileDirectory(context)
+        if (videoFileDirectory?.exists() == false) {
+            videoFileDirectory.mkdirs()
+        }
+        return videoFileDirectory?.toString()?.let {
+            File(it, fileName)
+        }
+    }
+
+    fun saveVideoFile(file: File, inputStream: InputStream) {
+        try {
+            FileOutputStream(file).use { output ->
+                inputStream.copyTo(output)
+                output.flush()
+            }
+        } catch (e: IOException) {
+            throw e
+        }
     }
 }

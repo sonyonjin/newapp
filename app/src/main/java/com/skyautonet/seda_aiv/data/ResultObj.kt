@@ -20,11 +20,11 @@ package com.skyautonet.seda_aiv.data
  * A generic class that holds a value with its loading status.
  * @param <T>
  */
-sealed class Result<out R> {
+sealed class ResultObj<out R> {
 
-    data class Success<out T>(val data: T) : Result<T>()
-    data class Error(val exception: Exception) : Result<Nothing>()
-    object Loading : Result<Nothing>()
+    data class Success<out T>(val data: T) : ResultObj<T>()
+    data class Error(val exception: Exception) : ResultObj<Nothing>()
+    object Loading : ResultObj<Nothing>()
 
     override fun toString(): String {
         return when (this) {
@@ -36,7 +36,7 @@ sealed class Result<out R> {
 }
 
 /**
- * `true` if [Result] is of type [Success] & holds non-null [Success.data].
+ * `true` if [ResultObj] is of type [Success] & holds non-null [Success.data].
  */
-val Result<*>.succeeded
-    get() = this is Result.Success && data != null
+val ResultObj<*>.succeeded
+    get() = this is ResultObj.Success && data != null

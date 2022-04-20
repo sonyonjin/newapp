@@ -1,10 +1,10 @@
-package com.skyautonet.seda_aiv.data.source.local;
+package com.skyautonet.seda_aiv.data.source.local.db;
 
 import android.content.Context;
 
 import com.skyautonet.seda_aiv.SAApp;
-import com.skyautonet.seda_aiv.data.source.local.dao.AppManagedConfigDao;
-import com.skyautonet.seda_aiv.data.source.local.entity.AppManagedConfig;
+import com.skyautonet.seda_aiv.data.source.local.db.dao.AppManagedConfigDao;
+import com.skyautonet.seda_aiv.data.source.local.db.entity.AppManagedConfig;
 
 import androidx.room.Database;
 import androidx.room.Room;

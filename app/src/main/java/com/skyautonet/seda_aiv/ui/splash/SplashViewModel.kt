@@ -5,6 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.skyautonet.seda_aiv.SAApp
+import com.skyautonet.seda_aiv.data.source.DefaultSARepository
+import com.skyautonet.seda_aiv.data.source.FakeSALocalDataSource
+import com.skyautonet.seda_aiv.data.source.FakeSARemoteDataSource
 import com.skyautonet.seda_aiv.ui.BaseViewModel
 import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
 import com.skyautonet.seda_aiv.util.SdCardUtil
@@ -33,6 +36,11 @@ class SplashViewModel : BaseViewModel() {
             Log.i("SeDA_AIV", configData.rtspLink2)
             Log.i("SeDA_AIV", configData.rtspLink3)
             Log.i("SeDA_AIV", configData.ipAddress)
+
+            // config.txt저장된 내용을 읽어서 baseUrl로 사용해야 하므로 permission획득후 saRepository을 사용할 수 있도록 inject시킴
+            SAApp.saRepository = DefaultSARepository(FakeSARemoteDataSource, FakeSALocalDataSource)
+            SAApp.instance.getNetComponent().inject(SAApp.saRepository)
+            SAApp.instance.getNetComponent().inject(this)
         } else {
             Log.e("SeDA_AIV", errorMsg)
         }

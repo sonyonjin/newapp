@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import com.skyautonet.seda_aiv.R
 import com.skyautonet.seda_aiv.SAApp
 import com.skyautonet.seda_aiv.data.AppConfig
-import com.skyautonet.seda_aiv.data.source.local.entity.AppManagedConfig
+import com.skyautonet.seda_aiv.data.source.local.db.entity.AppManagedConfig
 import com.skyautonet.seda_aiv.ui.BaseViewModel
 import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
 import java.text.SimpleDateFormat

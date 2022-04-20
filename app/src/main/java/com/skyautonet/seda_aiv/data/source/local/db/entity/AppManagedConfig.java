@@ -1,4 +1,4 @@
-package com.skyautonet.seda_aiv.data.source.local.entity;
+package com.skyautonet.seda_aiv.data.source.local.db.entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

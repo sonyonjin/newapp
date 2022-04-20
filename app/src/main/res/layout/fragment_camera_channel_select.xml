@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.skyautonet.seda_aiv.ui.setting.calibration.CameraChannelSelectViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/tv_camera_channel_explan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/camera_channel_select_explan"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_camera_channel_explan"
+            app:layout_constraintBottom_toTopOf="@id/ll_camera_channel_select_btn">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_h_camera_channel_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_h_camera_channel_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.95" />
+
+            <ImageView
+                android:id="@+id/iv_camera_channel_4"
+                android:layout_width="120dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_btn_camera_channel_4"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/gl_h_camera_channel_top"
+                app:layout_constraintBottom_toBottomOf="@id/gl_h_camera_channel_bottom"
+                app:layout_constraintHorizontal_bias="0.2" />
+
+            <ImageView
+                android:id="@+id/iv_camera_channel_8"
+                android:layout_width="120dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_btn_camera_channel_8"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/gl_h_camera_channel_top"
+                app:layout_constraintBottom_toBottomOf="@id/gl_h_camera_channel_bottom"
+                app:layout_constraintHorizontal_bias="0.8" />
+
+            <ImageView
+                android:id="@+id/iv_camera_channel_6"
+                android:layout_width="120dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_btn_camera_channel_6"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/gl_h_camera_channel_top"
+                app:layout_constraintBottom_toBottomOf="@id/gl_h_camera_channel_bottom"
+                app:layout_constraintHorizontal_bias="0.5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_camera_channel_select_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.95">
+
+            <TextView
+                android:id="@+id/tv_camera_channel_select_btn_preview"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/calib_btn_prev"
+                android:textSize="17sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:padding="5dp"
+                android:background="@drawable/shape_bg_btn_video_type_selected" />
+
+            <TextView
+                android:id="@+id/tv_camera_channel_select_btn_next"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/calib_btn_next"
+                android:textSize="17sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_marginStart="20dp"
+                android:padding="5dp"
+                android:background="@drawable/shape_bg_btn_video_type_selected" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

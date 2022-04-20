@@ -1,15 +1,19 @@
 package com.skyautonet.seda_aiv.ui.videolist
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.skyautonet.seda_aiv.R
-import com.skyautonet.seda_aiv.data.Result
+import com.skyautonet.seda_aiv.common.CustomDialog
+import com.skyautonet.seda_aiv.data.ResultObj
+import com.skyautonet.seda_aiv.data.source.local.file.VideoFile
 import com.skyautonet.seda_aiv.databinding.FragmentVideoListBinding
 import com.skyautonet.seda_aiv.model.VideoItem
 import com.skyautonet.seda_aiv.ui.BaseFragment
@@ -41,11 +45,16 @@ class VideoListFragment : BaseFragment() {
         }
         initView()
         viewModel.videoListResponse.observe(viewLifecycleOwner) {
-            if (it is Result.Success) {
-                videoListAdapter.setList(viewModel.videoList)
-                videoListAdapter.notifyDataSetChanged()
+            if (it is ResultObj.Success) {
+                viewModel.syncDownloadedVideoFile()
             }
         }
+        viewModel.syncedDownloadedVideoFileObserve.observe(viewLifecycleOwner) {
+            binding.tvVideoListTotal.text = resources.getString(R.string.video_total_count, viewModel.getTotalCount())
+            videoListAdapter.setList(viewModel.videoList)
+            videoListAdapter.notifyDataSetChanged()
+        }
+
         viewModel.getVideoList()
         return view
     }
@@ -60,10 +69,36 @@ class VideoListFragment : BaseFragment() {
             srVideoList.isRefreshing = false
         }
 
-        videoListAdapter = VideoListAdapter(requireContext(), viewModel.videoList, rvVideoList, object : VideoItemClick {
-            override fun onDownload(item: VideoItem) {
-                System.out.println("${item.file_name}")
+        videoListAdapter = VideoListAdapter(requireContext(), viewModel.videoList, rvVideoList, object :
+            VideoListAdapter.VideoItemClick {
+            override fun onDownload(viewHolder: VideoListAdapter.ViewHolder) {
+                if (viewHolder.itemView.tag is VideoItem) {
+                    val videoItem = viewHolder.itemView.tag as VideoItem
 
+                    CustomDialog(
+                        requireContext(),
+                        resources.getString(R.string.video_list_download_dialog_msg),
+                        R.drawable.ic_dialog_download,
+                        resources.getString(R.string.btn_ok),
+                        resources.getString(R.string.btn_cancel),
+                        object : CustomDialog.IOnClickItemListener {
+                            override fun onClickConfirm(dialog: Dialog) {
+                                dialog.dismiss()
+                                showLoader()
+                                viewModel.downloadVideo(videoItem.file_name,
+                                    object : VideolistViewModel.VideoItemDownloadListener {
+                                        override fun onDownloadCompleted(isSuccess: Boolean) {
+                                            if (isSuccess) {
+                                                videoListAdapter.setDisableItem(viewHolder)
+                                            } else{
+                                                Toast.makeText(requireContext(), "Download failed", Toast.LENGTH_SHORT).show()
+                                            }
+                                            hideLoader()
+                                        }
+                                    })
+                            }
+                        }).show()
+                }
             }
         })
         rvVideoList.adapter = videoListAdapter
@@ -94,16 +129,16 @@ class VideoListFragment : BaseFragment() {
 
         when (view) {
             binding.tvBtnVideoListTotal -> {
-                viewModel.setVideoType(VideolistViewModel.VideoType.TOTAL)
+                viewModel.setVideoType(VideoFile.VideoType.TOTAL)
             }
             binding.tvBtnVideoListDriving -> {
-                viewModel.setVideoType(VideolistViewModel.VideoType.DRIVING)
+                viewModel.setVideoType(VideoFile.VideoType.DRIVING)
             }
             binding.tvBtnVideoListParking -> {
-                viewModel.setVideoType(VideolistViewModel.VideoType.PARKING)
+                viewModel.setVideoType(VideoFile.VideoType.PARKING)
             }
             binding.tvBtnVideoListEvent -> {
-                viewModel.setVideoType(VideolistViewModel.VideoType.EVENT)
+                viewModel.setVideoType(VideoFile.VideoType.EVENT)
             }
         }
     }

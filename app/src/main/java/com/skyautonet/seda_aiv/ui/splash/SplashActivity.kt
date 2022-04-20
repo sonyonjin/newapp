@@ -5,10 +5,10 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import com.skyautonet.seda_aiv.SAApp
 import com.skyautonet.seda_aiv.databinding.ActivitySplashBinding
 import com.skyautonet.seda_aiv.ui.BaseActivity
 import com.skyautonet.seda_aiv.ui.MainActivity
-import com.skyautonet.seda_aiv.ui.home.HomeViewModel
 import com.skyautonet.seda_aiv.util.RequiredPermissionUtil
 
 class SplashActivity : BaseActivity() {
@@ -35,12 +35,19 @@ class SplashActivity : BaseActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(RequiredPermissionUtil.SA_PERMISSIONS, RequiredPermissionUtil.REQUEST_ID_SA_PERMISSIONS)
             } else {
-                viewModel.setConfigFile()
+                setConfigFile()
             }
         } else {
-            viewModel.setConfigFile()
+            setConfigFile()
             gotoMain()
         }
+    }
+
+    fun setConfigFile() {
+        viewModel.setConfigFile()
+        // config.txt저장된 내용을 읽어서 baseUrl로 사용해야 하므로 permission획득후 saRepository을 사용할 수 있도록 inject시킴
+        SAApp.instance.getNetComponent().inject(this)
+        dialog = commonUtils.createCustomLoader(this, false)
     }
 
     override fun onRequestPermissionsResult(
@@ -62,7 +69,7 @@ class SplashActivity : BaseActivity() {
             if (requirePermission.size > 0) {
                 requestPermissions(requirePermission.toTypedArray(), RequiredPermissionUtil.REQUEST_ID_SA_PERMISSIONS)
             } else {
-                viewModel.setConfigFile()
+                setConfigFile()
                 gotoMain()
             }
         }
