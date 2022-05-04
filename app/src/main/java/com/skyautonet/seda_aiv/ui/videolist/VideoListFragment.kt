@@ -50,7 +50,7 @@ class VideoListFragment : BaseFragment() {
             }
         }
         viewModel.syncedDownloadedVideoFileObserve.observe(viewLifecycleOwner) {
-            binding.tvVideoListTotal.text = resources.getString(R.string.video_total_count, viewModel.getTotalCount())
+            "${resources.getString(R.string.video_total_count)} ${viewModel.getTotalCount()}".also { binding.tvVideoListTotal.text = it }
             videoListAdapter.setList(viewModel.videoList)
             videoListAdapter.notifyDataSetChanged()
         }

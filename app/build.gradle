@@ -70,6 +70,6 @@ dependencies {
     // For Kotlin use kapt instead of annotationProcessor
     testImplementation "androidx.room:room-testing:$room_version"    // Test helpers
 
-    implementation 'org.videolan.android:libvlc-all:3.4.4'
+    implementation 'org.videolan.android:libvlc-all:3.5.0-eap6'
 
 }

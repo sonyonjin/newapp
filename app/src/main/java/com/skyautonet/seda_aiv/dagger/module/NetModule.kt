@@ -41,9 +41,9 @@ class NetModule() {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         val okClient = OkHttpClient.Builder()
-        okClient.connectTimeout(30000, TimeUnit.MILLISECONDS)
-        okClient.writeTimeout(30000, TimeUnit.MILLISECONDS)
-        okClient.readTimeout(30000, TimeUnit.MILLISECONDS)
+        okClient.connectTimeout(5000, TimeUnit.MILLISECONDS)
+        okClient.writeTimeout(5000, TimeUnit.MILLISECONDS)
+        okClient.readTimeout(5000, TimeUnit.MILLISECONDS)
 
         if (BuildConfig.DEBUG) {
             val interceptor = HttpLoggingInterceptor()

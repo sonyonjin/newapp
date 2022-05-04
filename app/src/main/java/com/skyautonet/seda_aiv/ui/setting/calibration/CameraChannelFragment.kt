@@ -10,6 +10,7 @@ import com.skyautonet.seda_aiv.R
 import com.skyautonet.seda_aiv.data.source.SARemoteDataSource
 import com.skyautonet.seda_aiv.databinding.FragmentCameraChannelBinding
 import com.skyautonet.seda_aiv.ui.BaseFragment
+import com.skyautonet.seda_aiv.ui.MainActivity
 
 class CameraChannelFragment : BaseFragment() {
 
@@ -59,10 +60,10 @@ class CameraChannelFragment : BaseFragment() {
             }
         }
 
-        binding.tvCameraChannelSelectBtnPreview.setOnClickListener {
+        binding.tvCameraChannelBtnPreview.setOnClickListener {
             onBtnSelected(CameraChannelSelectFragment())
         }
-        binding.tvCameraChannelSelectBtnNext.setOnClickListener {
+        binding.tvCameraChannelBtnNext.setOnClickListener {
             onNextBtnSelected()
         }
     }
@@ -74,5 +75,9 @@ class CameraChannelFragment : BaseFragment() {
     }
 
     private fun onNextBtnSelected() {
+        if (activity is MainActivity) {
+            val mainActivity = activity as MainActivity
+            mainActivity.loadFullScreen(AutoCalibFragment())
+        }
     }
 }

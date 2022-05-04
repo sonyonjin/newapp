@@ -10,6 +10,11 @@ interface SAAppInterface {
     @GET("Alert.php")
     fun alert(): Call<AlertResponse>
 
+    @GET("SetViewMode.php")
+    fun set_view_mode(
+        @Query("view_mode") view_mode: Int
+    ): Call<SetViewModeResponse>
+
     @GET("VideoList.php")
     fun video_list(
         @Query("video_type") video_type: Int
@@ -30,4 +35,12 @@ interface SAAppInterface {
     fun set_camera_channel(
         @Query("channel_mode") channel_mode: Int
     ): Call<SetCameraChannelResponse>
+
+    @GET("CalibrationList.php")
+    fun cabration_list(): Call<CalibrationListResponse>
+
+    @GET("DownloadCalibration.php")
+    fun download_calibration(
+        @Query("file_name")  file_name: String
+    ): Call<ResponseBody>
 }

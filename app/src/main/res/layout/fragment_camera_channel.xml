@@ -33,7 +33,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_camera_channel_explan"
-            app:layout_constraintBottom_toTopOf="@id/ll_camera_channel_select_btn">
+            app:layout_constraintBottom_toTopOf="@id/ll_camera_channel_btn">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
         </FrameLayout>
 
         <LinearLayout
-            android:id="@+id/ll_camera_channel_select_btn"
+            android:id="@+id/ll_camera_channel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -66,7 +66,7 @@
             app:layout_constraintVertical_bias="0.95">
 
             <TextView
-                android:id="@+id/tv_camera_channel_select_btn_preview"
+                android:id="@+id/tv_camera_channel_btn_preview"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="@string/calib_btn_prev"
@@ -77,16 +77,16 @@
                 android:background="@drawable/shape_bg_btn_video_type_selected" />
 
             <TextView
-                android:id="@+id/tv_camera_channel_select_btn_next"
+                android:id="@+id/tv_camera_channel_btn_next"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="@string/calib_btn_next"
                 android:textSize="17sp"
-                android:textColor="@color/white"
+                android:textColor="#0045BC"
                 android:gravity="center"
                 android:layout_marginStart="20dp"
                 android:padding="5dp"
-                android:background="@drawable/shape_bg_btn_video_type_selected" />
+                android:background="@drawable/shape_bg_btn_video_type" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

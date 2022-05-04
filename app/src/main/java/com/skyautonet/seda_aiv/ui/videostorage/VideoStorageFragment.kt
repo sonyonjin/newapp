@@ -46,7 +46,7 @@ class VideoStorageFragment : BaseFragment() {
         initView()
         viewModel._videoList.observe(viewLifecycleOwner) {
             videoStorageAdapter.setList(viewModel.videoList)
-            binding.tvVideoStorageTotal.text = resources.getString(R.string.video_total_count, viewModel.getTotalCount())
+            "${resources.getString(R.string.video_total_count)} ${viewModel.getTotalCount()}".also { binding.tvVideoStorageTotal.text = it }
             videoStorageAdapter.notifyDataSetChanged()
         }
         viewModel.getVideoStorage()

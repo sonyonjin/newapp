@@ -20,12 +20,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.25" />
+            app:layout_constraintGuide_percent="0.375" />
 
         <org.videolan.libvlc.util.VLCVideoLayout
             android:id="@+id/vlc_video_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+<!--        <WebView-->
+<!--            android:id="@+id/wv_video_layout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_alert"
@@ -226,7 +231,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_live_menu"
             android:layout_width="0dp"
-            android:layout_height="165dp"
+            android:layout_height="210dp"
             android:visibility="invisible"
             app:layout_constraintLeft_toLeftOf="@id/gl_v_alert_view"
             app:layout_constraintRight_toRightOf="parent"
@@ -357,18 +362,18 @@
                     android:layout_weight="1" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_live_menu_btn_front_bird"
+                    android:id="@+id/cl_live_menu_btn_rear"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_live_menu_item"
-                    app:layout_constraintRight_toLeftOf="@id/cl_live_menu_btn_rear_bird"
+                    app:layout_constraintRight_toLeftOf="@id/cl_live_menu_btn_rear_right"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/gl_h_live_menu_btn_front_bird_mid"
+                        android:id="@+id/gl_h_live_menu_btn_rear_mid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -377,37 +382,37 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_live_menu_btn_front_bird"
+                        android:src="@drawable/ic_live_menu_btn_rear"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_front_bird_mid" />
+                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_rear_mid" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/live_menu_front_bird_view"
+                        android:text="@string/live_menu_front_rear"
                         android:textSize="11sp"
                         android:textColor="@color/black"
                         android:layout_marginTop="2dp"
                         android:gravity="center"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_front_bird_mid" />
+                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_rear_mid" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_live_menu_btn_rear_bird"
+                    android:id="@+id/cl_live_menu_btn_rear_right"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_live_menu_item"
-                    app:layout_constraintRight_toLeftOf="@id/cl_live_menu_btn_left_bird"
+                    app:layout_constraintRight_toLeftOf="@id/cl_live_menu_btn_rear_left"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/gl_h_live_menu_btn_rear_bird_mid"
+                        android:id="@+id/gl_h_live_menu_btn_rear_right_mid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -416,37 +421,37 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_live_menu_btn_rear_bird"
+                        android:src="@drawable/ic_live_menu_btn_rear_right"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_rear_bird_mid" />
+                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_rear_right_mid" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/live_menu_rear_bird_view"
+                        android:text="@string/live_menu_rear_right_view"
                         android:textSize="11sp"
                         android:textColor="@color/black"
                         android:layout_marginTop="2dp"
                         android:gravity="center"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_rear_bird_mid" />
+                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_rear_right_mid" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_live_menu_btn_left_bird"
+                    android:id="@+id/cl_live_menu_btn_rear_left"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_live_menu_item"
-                    app:layout_constraintRight_toLeftOf="@id/cl_live_menu_btn_right_bird"
+                    app:layout_constraintRight_toLeftOf="@id/cl_live_menu_btn_front"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/gl_h_live_menu_btn_left_bird_mid"
+                        android:id="@+id/gl_h_live_menu_btn_rear_left_mid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -455,26 +460,26 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_live_menu_btn_left_bird"
+                        android:src="@drawable/ic_live_menu_btn_rear_left"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_left_bird_mid" />
+                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_rear_left_mid" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/live_menu_three_d"
+                        android:text="@string/live_menu_rear_left_view"
                         android:textSize="11sp"
                         android:textColor="@color/black"
                         android:layout_marginTop="2dp"
                         android:gravity="center"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_left_bird_mid" />
+                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_rear_left_mid" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_live_menu_btn_right_bird"
+                    android:id="@+id/cl_live_menu_btn_front"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="5dp"
@@ -485,7 +490,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/gl_h_live_menu_btn_right_bird_mid"
+                        android:id="@+id/gl_h_live_menu_btn_front_mid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -494,22 +499,22 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_live_menu_btn_right_bird"
+                        android:src="@drawable/ic_live_menu_btn_front"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_right_bird_mid" />
+                        app:layout_constraintBottom_toBottomOf="@id/gl_h_live_menu_btn_front_mid" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/live_menu_right_bird_view"
+                        android:text="@string/live_menu_front_view"
                         android:textSize="11sp"
                         android:textColor="@color/black"
                         android:layout_marginTop="2dp"
                         android:gravity="center"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_right_bird_mid" />
+                        app:layout_constraintTop_toTopOf="@id/gl_h_live_menu_btn_front_mid" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 

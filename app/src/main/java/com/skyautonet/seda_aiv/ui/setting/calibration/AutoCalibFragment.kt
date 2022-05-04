@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.skyautonet.seda_aiv.R
 import com.skyautonet.seda_aiv.databinding.FragmentAutoCalibBinding
 import com.skyautonet.seda_aiv.ui.BaseFragment
+import com.skyautonet.seda_aiv.ui.MainActivity
 
 class AutoCalibFragment : BaseFragment() {
     private var _binding: FragmentAutoCalibBinding? = null
@@ -30,6 +31,19 @@ class AutoCalibFragment : BaseFragment() {
             viewmodel = viewModel
         }
 
+        startAutoCalib()
         return view
+    }
+
+    private fun startAutoCalib() {
+        showLoader()
+
+        viewModel.startLoading() {
+            hideLoader()
+            if (activity is MainActivity) {
+                val mainActivity = activity as MainActivity
+                mainActivity.loadFullScreen(PinPointSetFragment())
+            }
+        }
     }
 }

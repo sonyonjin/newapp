@@ -184,7 +184,7 @@ object SdCardUtil {
         }
     }
 
-    fun saveVideoFile(file: File, inputStream: InputStream) {
+    fun saveFile(file: File, inputStream: InputStream) {
         try {
             FileOutputStream(file).use { output ->
                 inputStream.copyTo(output)
@@ -194,4 +194,29 @@ object SdCardUtil {
             throw e
         }
     }
+
+    fun getCalibrationFileDirectory(context: Context): File? {
+        return when (Environment.getExternalStorageState()) {
+            Environment.MEDIA_MOUNTED -> {
+                val pathString = getMountedExternalMediaFileDir(context)
+                return pathString?.let {
+                    File(pathString + "/calibration_file")
+                }
+            }
+            else -> {
+                null
+            }
+        }
+    }
+
+    fun getCalibrationFile(context: Context, fileName: String): File? {
+        val calibrationFileDirectory = getCalibrationFileDirectory(context)
+        if (calibrationFileDirectory?.exists() == false) {
+            calibrationFileDirectory.mkdirs()
+        }
+        return calibrationFileDirectory?.toString()?.let {
+            File(it, fileName)
+        }
+    }
+
 }

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SedaAIV</string>
-    <string name="config">Enter data without any space after \'=\' and end the line with a \';\' also don\'t change the arrangement\nssid=pi;\npassword=12345678;\nProduct Reg.No=1;\nRTSP Link (Camera)=rtsp://192.168.0.3:8554/test;\nRTSP Link (Channel1)=rtsp://192.168.0.10:8556/test;\nRTSP Link (Channel2)=rtsp://192.168.0.10:8558/test;\nIP Address of Access Point=192.168.0.10;\n</string>
+    <string name="config">Enter data without any space after \'=\' and end the line with a \';\' also don\'t change the arrangement\nssid=pi;\npassword=12345678;\nProduct Reg.No=1;\nRTSP Link (Camera)=rtsp://192.168.0.10:8554/test;\nRTSP Link (Channel1)=rtsp://192.168.0.10:8556/test;\nRTSP Link (Channel2)=rtsp://192.168.0.10:8558/test;\nIP Address of Access Point=192.168.0.10;\n</string>
     <string name="title_home">Home</string>
     <string name="title_live_view">Live view</string>
     <string name="title_video_list">Video list</string>
@@ -14,10 +14,10 @@
     <string name="home_network_state">Network state</string>
     <string name="live_menu_two_d">2D</string>
     <string name="live_menu_three_d">3D</string>
-    <string name="live_menu_front_bird_view">Front Bird View</string>
-    <string name="live_menu_rear_bird_view">Rear Bird View</string>
-    <string name="live_menu_left_bird_view">Left Bird View</string>
-    <string name="live_menu_right_bird_view">Right Bird View</string>
+    <string name="live_menu_front_rear">Rear View</string>
+    <string name="live_menu_rear_right_view">Rear Right View</string>
+    <string name="live_menu_rear_left_view">Rear Left View</string>
+    <string name="live_menu_front_view">Front View</string>
     <string name="desc_collapse_live_menu_btn">To collapse live menu</string>
     <string name="desc_expand_live_menu_btn">To expand live menu</string>
     <string name="btn_home_network_connect">Connect</string>
@@ -35,7 +35,7 @@
     <string name="video_list_download_dialog_msg">Do you want to save the video?</string>
     <string name="btn_ok">OK</string>
     <string name="btn_cancel">CANCEL</string>
-    <string name="video_total_count">Total %d</string>
+    <string name="video_total_count">Total</string>
     <string name="video_storage_delete">Delete</string>
     <string name="video_storage_header_play">Play</string>
     <string name="video_storage_delete_dialog_msg">Do you want to delete the video?</string>
@@ -52,5 +52,11 @@
     <string name="camera_channel_select_explan">How many cameras are installed?</string>
     <string name="calib_btn_prev">Prev</string>
     <string name="calib_btn_next">Next</string>
+    <string name="calib_btn_finish">Finish</string>
     <string name="camera_channel_explan">Arrange the Calibration matts around the vehicle.</string>
+    <string name="auto_calib_explan">The calibration routine is being performed.</string>
+    <string name="pin_point_set_explan">Select a point and move the arrow to the corresponding locations in order.</string>
+    <string name="pin_point_set_position">Front side</string>
+    <string name="pin_point_set_remaining_position">1 / Left matt / Left front point</string>
+    <string name="calib_complete_explan">Calibration success. Rotate the 3D image to make sure it is displayed correctly.</string>
 </resources>

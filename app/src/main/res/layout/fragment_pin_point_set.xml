@@ -14,5 +14,294 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_pin_point_set"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:longClickable="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_photo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <com.skyautonet.seda_aiv.ui.customview.CanvasHandPaintView
+                android:id="@+id/chpv_photo_paint_canvas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/iv_photo"
+                app:layout_constraintRight_toRightOf="@id/iv_photo"
+                app:layout_constraintTop_toTopOf="@id/iv_photo"
+                app:layout_constraintBottom_toBottomOf="@id/iv_photo" />
+
+            <ImageView
+                android:id="@+id/iv_pin_pointer_1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/selector_ic_pin_pointer_1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <ImageView
+                android:id="@+id/iv_pin_pointer_2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/selector_ic_pin_pointer_2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <ImageView
+                android:id="@+id/iv_pin_pointer_3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/selector_ic_pin_pointer_3"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintVertical_bias="0.8" />
+
+            <ImageView
+                android:id="@+id/iv_pin_pointer_4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/selector_ic_pin_pointer_4"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintVertical_bias="0.8" />
+
+            <ImageView
+                android:id="@+id/iv_pin_pointer_5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/selector_ic_pin_pointer_5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <ImageView
+                android:id="@+id/iv_pin_pointer_6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/selector_ic_pin_pointer_6"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.85"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <ImageView
+                android:id="@+id/iv_pin_pointer_7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/selector_ic_pin_pointer_7"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintVertical_bias="0.8" />
+
+            <ImageView
+                android:id="@+id/iv_pin_pointer_8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/selector_ic_pin_pointer_8"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.85"
+                app:layout_constraintVertical_bias="0.8" />
+
+            <FrameLayout
+                android:id="@+id/fl_zoom_view"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <com.skyautonet.seda_aiv.ui.customview.ZoomImageView
+                    android:id="@+id/iv_zoom_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="matrix" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/bg_zoom_view" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/iv_zoom_view_btn_left"
+                android:layout_width="50dp"
+                android:layout_height="150dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="60dp"
+                android:paddingBottom="60dp"
+                android:src="@drawable/selector_ic_zoom_view_btn_left"
+                app:layout_constraintRight_toLeftOf="@id/fl_zoom_view"
+                app:layout_constraintTop_toTopOf="@id/fl_zoom_view"
+                app:layout_constraintBottom_toBottomOf="@id/fl_zoom_view" />
+
+            <ImageView
+                android:id="@+id/iv_zoom_view_btn_right"
+                android:layout_width="50dp"
+                android:layout_height="150dp"
+                android:paddingRight="20dp"
+                android:paddingTop="60dp"
+                android:paddingBottom="60dp"
+                android:src="@drawable/selector_ic_zoom_view_btn_right"
+                app:layout_constraintLeft_toRightOf="@id/fl_zoom_view"
+                app:layout_constraintTop_toTopOf="@id/fl_zoom_view"
+                app:layout_constraintBottom_toBottomOf="@id/fl_zoom_view" />
+
+            <ImageView
+                android:id="@+id/iv_zoom_view_btn_top"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:paddingLeft="60dp"
+                android:paddingRight="60dp"
+                android:paddingTop="20dp"
+                android:src="@drawable/selector_ic_zoom_view_btn_top"
+                app:layout_constraintLeft_toLeftOf="@id/fl_zoom_view"
+                app:layout_constraintRight_toRightOf="@id/fl_zoom_view"
+                app:layout_constraintBottom_toTopOf="@id/fl_zoom_view" />
+
+            <ImageView
+                android:id="@+id/iv_zoom_view_btn_bottom"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:paddingLeft="60dp"
+                android:paddingRight="60dp"
+                android:paddingBottom="20dp"
+                android:src="@drawable/selector_ic_zoom_view_btn_bottom"
+                app:layout_constraintLeft_toLeftOf="@id/fl_zoom_view"
+                app:layout_constraintRight_toRightOf="@id/fl_zoom_view"
+                app:layout_constraintTop_toBottomOf="@id/fl_zoom_view" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/white_80"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_pin_point_set_explan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pin_point_set_explan"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_pin_point_set_explan"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pin_point_set_position"
+                    android:textSize="17sp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/shape_bg_btn_pin_point_set"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_remaining_position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pin_point_set_remaining_position"
+                    android:textSize="17sp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/shape_bg_btn_pin_point_set"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_pin_point_set_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.9">
+
+            <TextView
+                android:id="@+id/tv_pin_point_set_btn_preview"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/calib_btn_prev"
+                android:textSize="17sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:padding="5dp"
+                android:background="@drawable/shape_bg_btn_video_type_selected" />
+
+            <TextView
+                android:id="@+id/tv_pin_point_set_btn_next"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/calib_btn_next"
+                android:textSize="17sp"
+                android:textColor="#0045BC"
+                android:gravity="center"
+                android:layout_marginStart="20dp"
+                android:padding="5dp"
+                android:background="@drawable/shape_bg_btn_video_type" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

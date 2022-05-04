@@ -11,13 +11,26 @@ import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
 import com.skyautonet.seda_aiv.data.ResultObj
 import com.skyautonet.seda_aiv.data.ResultObj.Success
 import com.skyautonet.seda_aiv.data.succeeded
+import com.skyautonet.seda_aiv.model.CalibrationListResponse
+import com.skyautonet.seda_aiv.model.SetViewModeResponse
 import com.skyautonet.seda_aiv.ui.BaseViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LiveViewViewModel(
-    private val alertSARepository: SARepository = SAApp.saRepository
+    private val saRepository: SARepository = SAApp.saRepository
 ) : BaseViewModel() {
+
+    enum class ViewMode(private val apiValue: Int) {
+        TWO_D(0), THREE_D_REAR(1), THREE_D_REAR_RIGHT(2), THREE_D_REAR_LEFT(3), THREE_D_FRONT(4);
+
+        fun getApiValue(): Int {
+            return apiValue
+        }
+    }
 
     private val _appConfig = MutableLiveData<AppConfig>()
     val appConfig: LiveData<AppConfig>
@@ -34,7 +47,7 @@ class LiveViewViewModel(
         }
     }
 
-    private var _alertResponse = alertSARepository.observeAlerts()
+    private var _alertResponse = saRepository.observeAlerts()
     private val _alertResponseObserver by lazy {
         Observer<ResultObj<AlertResponse>>() { result ->
             if (result.succeeded) {
@@ -85,7 +98,7 @@ class LiveViewViewModel(
         viewModelScope.launch {
             while(true) {
                 delay(1000)
-                alertSARepository.refreshAlerts()
+                saRepository.refreshAlerts()
             }
         }
     }
@@ -95,6 +108,35 @@ class LiveViewViewModel(
             isVisibleAlertRight.value = ObservableBoolean(computeResult(resultObj, "RIGHT=ON"))
             isVisibleAlertTop.value = ObservableBoolean(computeResult(resultObj, "TOP=ON"))
             isVisibleAlertBottom.value = ObservableBoolean(computeResult(resultObj, "BOTTOM=ON"))
+    }
+
+    var SetViewModeResponse: SetViewModeResponse? = null
+
+    fun setViewModel(viewModel: ViewMode) {
+        viewModelScope.launch {
+            if (commonUtils.isNetworkAvailable) {
+                val videoListCall: Call<SetViewModeResponse> = saAppInterface.set_view_mode(viewModel.getApiValue())
+                var resultObj: ResultObj<SetViewModeResponse>
+
+                videoListCall.enqueue(object: Callback<SetViewModeResponse> {
+                    override fun onResponse(
+                        call: Call<SetViewModeResponse>,
+                        response: Response<SetViewModeResponse>
+                    ) {
+                        if (response.isSuccessful && response.body() != null) {
+                            SetViewModeResponse = response.body()!!
+                            resultObj = ResultObj.Success(response.body()!!)
+                        } else {
+                            resultObj = ResultObj.Error(Exception("ApiCall failed"))
+                        }
+                    }
+
+                    override fun onFailure(call: Call<SetViewModeResponse>, t: Throwable) {
+                        resultObj = ResultObj.Error(Exception(t.message))
+                    }
+                })
+            }
+        }
     }
 
 }

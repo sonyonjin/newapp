@@ -98,7 +98,7 @@ class VideolistViewModel(
                     ) {
                         if (response.body() != null) {
                             SdCardUtil.getVideoFile(SAApp.instance, fileName)?.let {
-                                SdCardUtil.saveVideoFile(it, response.body()!!.byteStream())
+                                SdCardUtil.saveFile(it, response.body()!!.byteStream())
                                 listener.onDownloadCompleted(true)
                                 return
                             }

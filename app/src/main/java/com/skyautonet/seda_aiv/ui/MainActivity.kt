@@ -7,16 +7,19 @@ import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import androidx.fragment.app.Fragment
 import com.skyautonet.seda_aiv.R
+import com.skyautonet.seda_aiv.SAApp
 import com.skyautonet.seda_aiv.databinding.ActivityMainBinding
 import com.skyautonet.seda_aiv.ui.home.HomeFragment
 import com.skyautonet.seda_aiv.ui.liveview.LiveViewFragment
 import com.skyautonet.seda_aiv.ui.setting.SettingFragment
 import com.skyautonet.seda_aiv.ui.videolist.VideoListFragment
 import com.skyautonet.seda_aiv.ui.videostorage.VideoStorageFragment
+import com.skyautonet.seda_aiv.util.RoomDatabaseUtil
 
 class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var isForceHideMenu = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +33,11 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initView() {
-        setSelectedMenu(binding.clMenuHome)
-        onMenuSelected(HomeFragment())
+        if (commonUtils.confirmSSID(SAApp.instance, RoomDatabaseUtil.getApplicationConfigData().ssid)) {
+            performClick(binding.clMenuLive, LiveViewFragment())
+        } else {
+            performClick(binding.clMenuHome, HomeFragment())
+        }
 
         binding.clMenuHome.setOnClickListener {
             performClick(it, HomeFragment())
@@ -62,7 +68,9 @@ class MainActivity : BaseActivity() {
         setEnabledMenuAll(true)
         if (fragment is LiveViewFragment) {
             if (!isExpanded()) {
-                setSlideMenu(false)
+                binding.btnSlide.post {
+                    setSlideMenu(false)
+                }
             }
         }
     }
@@ -141,5 +149,27 @@ class MainActivity : BaseActivity() {
         binding.clMenuVideoList.isEnabled = isEnabled
         binding.clMenuVideoStorage.isEnabled = isEnabled
         binding.clMenuSetting.isEnabled = isEnabled
+    }
+
+    private fun setHideMenu(isHide: Boolean) {
+        if (isHide) {
+            binding.navView.visibility = View.GONE
+            binding.btnSlide.visibility = View.GONE
+        } else {
+            binding.navView.visibility = View.VISIBLE
+            binding.btnSlide.visibility = View.VISIBLE
+        }
+    }
+
+    fun loadFullScreen(fragment: Fragment) {
+        setHideMenu(true)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.cl_container, fragment)
+            .commit()
+    }
+
+    fun releaseFullScreen(fragment: Fragment) {
+        setHideMenu(false)
+        onMenuSelected(fragment)
     }
 }

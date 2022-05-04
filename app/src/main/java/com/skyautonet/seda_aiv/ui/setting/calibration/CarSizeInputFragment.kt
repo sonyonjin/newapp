@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.skyautonet.seda_aiv.R
 import com.skyautonet.seda_aiv.databinding.FragmentCarSizeInputBinding
 import com.skyautonet.seda_aiv.ui.BaseFragment
+import com.skyautonet.seda_aiv.ui.MainActivity
 
 class CarSizeInputFragment : BaseFragment() {
     private var _binding: FragmentCarSizeInputBinding? = null
@@ -30,6 +31,30 @@ class CarSizeInputFragment : BaseFragment() {
             viewmodel = viewModel
         }
 
+        initView()
         return view
+    }
+
+    private fun initView() {
+        binding.tvCarSizeInputBtnPreview.setOnClickListener {
+            onPrevBtnSelected()
+        }
+        binding.tvCarSizeInputBtnNext.setOnClickListener {
+            onNextBtnSelected()
+        }
+    }
+
+    private fun onPrevBtnSelected() {
+        if (activity is MainActivity) {
+            val mainActivity = activity as MainActivity
+            mainActivity.loadFullScreen(PinPointSetFragment())
+        }
+    }
+
+    private fun onNextBtnSelected() {
+        if (activity is MainActivity) {
+            val mainActivity = activity as MainActivity
+            mainActivity.loadFullScreen(CalibCompleteFragment())
+        }
     }
 }

@@ -111,11 +111,11 @@
                 android:layout_height="wrap_content"
                 android:text="@string/calib_btn_next"
                 android:textSize="17sp"
-                android:textColor="@color/white"
+                android:textColor="#0045BC"
                 android:gravity="center"
                 android:layout_marginStart="20dp"
                 android:padding="5dp"
-                android:background="@drawable/shape_bg_btn_video_type_selected" />
+                android:background="@drawable/shape_bg_btn_video_type" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

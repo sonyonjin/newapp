@@ -9,9 +9,30 @@ import androidx.lifecycle.ViewModelProvider
 import com.skyautonet.seda_aiv.R
 import com.skyautonet.seda_aiv.databinding.FragmentSettingBinding
 import com.skyautonet.seda_aiv.ui.BaseFragment
-import com.skyautonet.seda_aiv.ui.setting.calibration.CalibRegiFragment
+import com.skyautonet.seda_aiv.ui.setting.calibration.*
 
 class SettingFragment : BaseFragment() {
+
+    companion object {
+        const val SETTING_MENU_SELECT = "setting_menu_select"
+        const val TARGET_SCREEN = "target_screen"
+    }
+
+    enum class SETTING_MENU(private val position: Int) {
+        DVR_OPTION(0), CALIBRATION(1), NETWORK(2), DISPLAY(3), CAMERA_BRIGHTNESS(4), ENGINEER_MODE(5);
+
+        fun getPosition(): Int {
+            return position
+        }
+    }
+
+    enum class CALIBRATION_TARGET_SCREEN(private val position: Int) {
+        CALIB_REGI(0), CAMERA_CHANNEL_SELECT(1), CAMERA_CHANNEL(2), AUTO_CALIB(3), PIN_POINT_SET(4), CAR_SIZE_INPUT(5), CALIB_COMPLETE(6);
+
+        fun getPosition(): Int {
+            return position
+        }
+    }
 
     private var _binding: FragmentSettingBinding? = null
     private lateinit var viewModel: SettingViewModel
@@ -38,47 +59,80 @@ class SettingFragment : BaseFragment() {
 
     private fun initView() {
         binding.llSettingMenuDvrOption.setOnClickListener {
-            performClick(it)
+            setSelectedBtn(it, null)
         }
         binding.llSettingMenuCalibration.setOnClickListener {
-            performClick(it)
+            setSelectedBtn(it, CalibRegiFragment())
         }
         binding.llSettingMenuNetwork.setOnClickListener {
-            performClick(it)
+            setSelectedBtn(it, null)
         }
         binding.llSettingMenuDisplay.setOnClickListener {
-            performClick(it)
+            setSelectedBtn(it, null)
         }
         binding.llSettingMenuCameraBrightness.setOnClickListener {
-            performClick(it)
+            setSelectedBtn(it, null)
         }
         binding.llSettingMenuEngineerMode.setOnClickListener {
-            performClick(it)
+            setSelectedBtn(it, null)
         }
-        setSelectedBtn(binding.llSettingMenuDvrOption)
+
+        val settingMenuSelect = arguments?.getInt(SETTING_MENU_SELECT)
+        when (settingMenuSelect) {
+            SETTING_MENU.DVR_OPTION.getPosition() -> {
+                setSelectedBtn(binding.llSettingMenuDvrOption, null)
+            }
+            SETTING_MENU.CALIBRATION.getPosition() -> {
+                val targetScreen = arguments?.getInt(TARGET_SCREEN)
+                val targetFragment: Fragment = when (targetScreen) {
+                    CALIBRATION_TARGET_SCREEN.CALIB_REGI.getPosition() -> CalibRegiFragment()
+                    CALIBRATION_TARGET_SCREEN.CAMERA_CHANNEL_SELECT.getPosition() -> CameraChannelSelectFragment()
+                    CALIBRATION_TARGET_SCREEN.CAMERA_CHANNEL.getPosition() -> CameraChannelFragment()
+                    CALIBRATION_TARGET_SCREEN.AUTO_CALIB.getPosition() -> AutoCalibFragment()
+                    CALIBRATION_TARGET_SCREEN.PIN_POINT_SET.getPosition() -> PinPointSetFragment()
+                    CALIBRATION_TARGET_SCREEN.CAR_SIZE_INPUT.getPosition() -> CarSizeInputFragment()
+                    CALIBRATION_TARGET_SCREEN.CALIB_COMPLETE.getPosition() -> CalibCompleteFragment()
+                    else -> {CalibRegiFragment()}
+                }
+                setSelectedBtn(binding.llSettingMenuCalibration, targetFragment)
+            }
+            SETTING_MENU.NETWORK.getPosition() -> {
+                setSelectedBtn(binding.llSettingMenuNetwork, null)
+            }
+            SETTING_MENU.DISPLAY.getPosition() -> {
+                setSelectedBtn(binding.llSettingMenuDisplay, null)
+            }
+            SETTING_MENU.CAMERA_BRIGHTNESS.getPosition() -> {
+                setSelectedBtn(binding.llSettingMenuCameraBrightness, null)
+            }
+            SETTING_MENU.ENGINEER_MODE.getPosition() -> {
+                setSelectedBtn(binding.llSettingMenuEngineerMode, null)
+            }
+            else -> {
+                setSelectedBtn(binding.llSettingMenuDvrOption, null)
+            }
+        }
     }
 
-    private fun performClick(view: View) {
-        setSelectedBtn(view)
-    }
-
-    private fun setSelectedBtn(view: View) {
+    private fun setSelectedBtn(view: View, fragment: Fragment?) {
         setSelectedBtnAll(false)
         view.isSelected = true
 
-        when (view) {
-            binding.llSettingMenuDvrOption -> {
-            }
-            binding.llSettingMenuCalibration -> {
-                onMenuSelected(CalibRegiFragment())
-            }
-            binding.llSettingMenuNetwork -> {
-            }
-            binding.llSettingMenuDisplay -> {
-            }
-            binding.llSettingMenuCameraBrightness -> {
-            }
-            binding.llSettingMenuEngineerMode -> {
+        fragment?.let {
+            when (view) {
+                binding.llSettingMenuDvrOption -> {
+                }
+                binding.llSettingMenuCalibration -> {
+                    onMenuSelected(it)
+                }
+                binding.llSettingMenuNetwork -> {
+                }
+                binding.llSettingMenuDisplay -> {
+                }
+                binding.llSettingMenuCameraBrightness -> {
+                }
+                binding.llSettingMenuEngineerMode -> {
+                }
             }
         }
     }

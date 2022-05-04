@@ -102,7 +102,7 @@ class DefaultSARepository(
                         if (response.isSuccessful && response.body() != null) {
                             resultObj = ResultObj.Success(response.body()!!)
                         } else {
-                            resultObj = ResultObj.Error(Exception("DateCall failed"))
+                            resultObj = ResultObj.Error(Exception("ApiCall failed"))
                         }
                         it.postValue(resultObj)
                     }
@@ -194,7 +194,7 @@ class DefaultSARepository(
                         if (response.isSuccessful && response.body() != null) {
                             resultObj = ResultObj.Success(response.body()!!)
                         } else {
-                            resultObj = ResultObj.Error(Exception("DateCall failed"))
+                            resultObj = ResultObj.Error(Exception("ApiCall failed"))
                         }
                         it.postValue(resultObj)
                     }
@@ -234,7 +234,7 @@ class DefaultSARepository(
                         if (response.isSuccessful && response.body() != null) {
                             resultObj = ResultObj.Success(response.body()!!)
                         } else {
-                            resultObj = ResultObj.Error(Exception("DateCall failed"))
+                            resultObj = ResultObj.Error(Exception("ApiCall failed"))
                         }
                         it.postValue(resultObj)
                     }
@@ -278,7 +278,7 @@ class DefaultSARepository(
                         if (response.isSuccessful && response.body() != null) {
                             resultObj = ResultObj.Success(response.body()!!)
                         } else {
-                            resultObj = ResultObj.Error(Exception("DateCall failed"))
+                            resultObj = ResultObj.Error(Exception("ApiCall failed"))
                         }
                         it.postValue(resultObj)
                     }
